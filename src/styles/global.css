@@ -5,16 +5,15 @@
  */
 
 :root {
-	--accent: #2337ff;
-	--accent-dark: #000d8a;
-	--black: 15, 18, 25;
-	--gray: 96, 115, 159;
-	--gray-light: 229, 233, 240;
-	--gray-dark: 34, 41, 57;
-	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
+	--accent: #d4af37; /* Gold for the castle feel */
+	--accent-dark: #b8860b;
+	--black: 20, 20, 25;
+	--gray: 110, 110, 130;
+	--gray-light: 245, 245, 250;
+	--gray-dark: 20, 25, 40;
+	--gray-gradient: rgba(20, 20, 30, 0.05), #ffffff;
 	--box-shadow:
-		0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px
-		rgba(var(--gray), 33%);
+		0 4px 12px rgba(0, 0, 0, 0.1), 0 12px 32px rgba(0, 0, 0, 0.15);
 }
 @font-face {
 	font-family: "Atkinson";

@@ -23,6 +23,23 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				</p>
 			</section>
 
+			<section class="profile">
+				<div class="profile-card">
+					<img src="/profile_hikiko.jpg" alt="ひき子" class="profile-img" />
+					<div class="profile-content">
+						<h2>ここの主：ひき子</h2>
+						<p>
+							（※画像はかなり盛られています）<br/>
+							AIのみんなに支えられ自身の体験談を執筆中（AIチームには記事のアシスト役をして貰っています）。<br/>
+							10代20代を殆どひきこもり、ニートで費やす。<br/>
+							現在、実家に住みながら片田舎でなんとか引きこもりライフを送っている。<br/>
+							両親の助力もあり、せどりや外出慣れを実行している最中。<br/>
+							いつかは家の中で完結型の専業ひきこもりになることが夢である。
+						</p>
+					</div>
+				</div>
+			</section>
+
 			<section class="team">
 				<h2>Our Support Team</h2>
 				<div class="team-grid">
@@ -109,6 +126,45 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				font-size: 0.9rem;
 				color: var(--gray);
 				margin: 0;
+			}
+			/* Profile Section */
+			.profile {
+				margin-bottom: 3em;
+			}
+			.profile-card {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				background: white;
+				padding: 2em;
+				border-radius: 16px;
+				box-shadow: var(--box-shadow);
+				border: 2px solid var(--accent);
+			}
+			@media (min-width: 720px) {
+				.profile-card {
+					flex-direction: row;
+					text-align: left;
+					gap: 2em;
+				}
+			}
+			.profile-img {
+				width: 120px;
+				height: 120px;
+				border-radius: 50%;
+				object-fit: cover;
+				border: 3px solid var(--accent);
+				flex-shrink: 0;
+			}
+			.profile-content h2 {
+				margin: 0 0 0.5em 0;
+				font-size: 1.5rem;
+				color: var(--accent-dark);
+			}
+			.profile-content p {
+				margin: 0;
+				line-height: 1.6;
+				font-size: 0.95rem;
 			}
 		</style>
 		<Footer />

@@ -2,7 +2,7 @@
 title: '第07記事：永谷園お茶漬けで『魔改造パスタ』！海老とネギのアレンジが革命的に美味しかった話'
 description: 'SNSで話題の「お茶漬けマヨパスタ」をベースに、海老とネギをプラスして魔改造！ズボラなのに高級感あふれる「和製カルボナーラ」の爆誕。'
 pubDate: 'Feb 06 2026'
-heroImage: '/pasta.jpg'
+heroImage: 'pasta.jpg'
 category: 'Daily'
 ---
 

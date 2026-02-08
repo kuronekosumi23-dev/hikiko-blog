@@ -2,7 +2,7 @@
 title: "8年前の私が「サポステ」で踏み出した一歩：アラサーになった今振り返る支援の価値"
 description: "「外に出るのが怖い」と思っていた8年前。地域若者サポートステーション（サポステ）の門を叩いた日のこと、すると今だから言える『支援』のホントのところを語ります。"
 pubDate: "2026-02-08"
-heroImage: "/blog-placeholder-about.jpg"
+heroImage: "../../assets/blog-placeholder-about.jpg"
 category: "生存戦略"
 ---
 

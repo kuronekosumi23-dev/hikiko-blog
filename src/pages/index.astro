@@ -1,48 +1,110 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			main {
+				padding: 3rem 1rem;
+				max-width: 800px;
+				margin: 0 auto;
+				text-align: center;
+			}
+			.hero-content {
+				margin-bottom: 4rem;
+			}
+			h1 {
+				font-size: 3.5rem;
+				margin-bottom: 1rem;
+				background: linear-gradient(45deg, var(--accent), var(--accent-light));
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+			}
+			.intro {
+				font-size: 1.25rem;
+				color: rgb(var(--gray-dark));
+				line-height: 1.6;
+			}
+			.cta-box {
+				background-color: rgb(var(--gray-light));
+				padding: 2rem;
+				border-radius: 1rem;
+				margin-top: 3rem;
+				border: 1px solid rgba(var(--gray), 0.2);
+			}
+			.cta-button {
+				display: inline-block;
+				background-color: var(--accent);
+				color: white;
+				padding: 1rem 2.5rem;
+				border-radius: 2rem;
+				text-decoration: none;
+				font-weight: bold;
+				font-size: 1.2rem;
+				transition: transform 0.2s ease, box-shadow 0.2s ease;
+				margin-top: 1.5rem;
+			}
+			.cta-button:hover {
+				transform: translateY(-3px);
+				box-shadow: 0 4px 12px rgba(var(--accent), 0.3);
+			}
+			.features {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+				gap: 2rem;
+				margin-top: 4rem;
+				text-align: left;
+			}
+			.feature-card {
+				padding: 1.5rem;
+				border-left: 4px solid var(--accent);
+				background: white;
+				box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+				border-radius: 0.5rem;
+			}
+			.feature-card h3 {
+				margin-top: 0;
+				color: var(--accent);
+			}
+		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This template
-				serves as a lightweight, minimally-styled starting point for anyone looking to build a personal
-				website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+			<div class="hero-content">
+				<h1>ようこそ、ひき子要塞へ</h1>
+				<p class="intro">
+					35歳、ひきこもり。この場所は、私が社会の波間に立ち上がり、<br />
+					自分らしく生き抜くための「生存戦略」を綴る大切な要塞です。
+				</p>
+			</div>
+
+			<div class="features">
+				<div class="feature-card">
+					<h3>生存戦略</h3>
+					<p>ひきこもり生活10年以上の経験から見えた、泥臭くて温かい日常の知恵を共有します。</p>
+				</div>
+				<div class="feature-card">
+					<h3>せどり・経済</h3>
+					<p>クレジットカードを持てない時期からの資金繰りや、マニアックな審美眼を活かした目利き術。</p>
+				</div>
+				<div class="feature-card">
+					<h3>爆走アート</h3>
+					<p>パースの練習やイラストを通じて、歪んだ自分の心と向き合い、世界に奥行きを作る修練記。</p>
+				</div>
+			</div>
+
+			<div class="cta-box">
+				<h2>要塞の中をのぞいてみる？</h2>
+				<p>これまでに積み上げた、私の魂の記録たちがあなたを待っています。</p>
+				<a href="/blog" class="cta-button">ブログ記事一覧へ爆走する！🚀</a>
+			</div>
 		</main>
 		<Footer />
 	</body>

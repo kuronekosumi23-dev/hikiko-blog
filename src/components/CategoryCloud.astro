@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+const categories = [...new Set(posts.map((post) => post.data.category).filter(Boolean))].sort();
+---
+
+<div class="category-cloud">
+	{categories.map((category) => (
+		<a href={`/blog/category/${category}/`} class="category-tag">
+			#{category}
+		</a>
+	))}
+</div>
+
+<style>
+	.category-cloud {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin-bottom: 2rem;
+		justify-content: center;
+	}
+	.category-tag {
+		padding: 0.25rem 0.75rem;
+		background-color: rgb(var(--gray-light));
+		border-radius: 20px;
+		color: rgb(var(--gray-dark));
+		text-decoration: none;
+		font-size: 0.9rem;
+		transition: all 0.2s ease;
+		border: 1px solid rgba(var(--gray), 0.2);
+	}
+	.category-tag:hover {
+		background-color: rgb(var(--accent));
+		color: white;
+		border-color: rgb(var(--accent));
+		transform: translateY(-2px);
+		box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+	}
+</style>

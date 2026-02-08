@@ -8,10 +8,10 @@ import Header from '../components/Header.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage, category } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 ---
 
-<html lang="ja">
+<html lang="en">
 	<head>
 		<BaseHead title={title} description={description} />
 		<style>
@@ -41,18 +41,6 @@ const { title, description, pubDate, updatedDate, heroImage, category } = Astro.
 				padding: 1em 0;
 				text-align: center;
 				line-height: 1;
-			}
-			.category-badge {
-				display: inline-block;
-				padding: 0.2em 0.8em;
-				border-radius: 999px;
-				background-color: var(--accent);
-				color: white;
-				font-size: 0.8rem;
-				font-weight: bold;
-				margin-bottom: 0.5em;
-				text-transform: uppercase;
-				letter-spacing: 0.05em;
 			}
 			.title h1 {
 				margin: 0 0 0.5em 0;
@@ -86,7 +74,6 @@ const { title, description, pubDate, updatedDate, heroImage, category } = Astro.
 								)
 							}
 						</div>
-						{category && <div class="category-badge">{category}</div>}
 						<h1>{title}</h1>
 						<hr />
 					</div>

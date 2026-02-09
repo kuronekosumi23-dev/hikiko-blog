@@ -2,7 +2,7 @@
 title: '【回想】10年以上の引きこもり生活で見えた「空白」の真実｜失ったものと、得たもの'
 description: '10年以上という、外からは「空白」に見える引きこもり期間。その暗闇の中で何を見て、何を守り抜いてきたのか。30代半ばで新しい地図を広げた「生存の記録」を綴ります。'
 pubDate: 'Feb 08 2026'
-heroImage: '../../assets/blog-placeholder-about.jpg'
+heroImage: '/blog-placeholder-4.jpg'
 ---
 
 ### プロローグ：重い扉の向こう側

@@ -2,7 +2,7 @@
 title: "0円運用ブログの作り方：Astro + Vercelで「家賃」を削る勇気"
 description: "「ブログを始めるのにお金がかかる」という常識を疑ってみませんか？AstroとVercelを使った、ひきこもり流・維持費ゼロの最強ブログ構築術を公開します。"
 pubDate: "2026-02-08"
-heroImage: "../../assets/blog-placeholder-4.jpg"
+heroImage: '/blog-placeholder-4.jpg'
 category: "生存戦略"
 ---
 

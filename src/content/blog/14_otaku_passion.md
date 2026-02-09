@@ -2,7 +2,7 @@
 title: "私が愛する「オタク小物」の世界：缶バッジ1個の相場を追う情熱"
 description: "「ただのアルミの塊」じゃない。缶バッジ1個の裏側に隠された、ファンたちの熱狂と市場の動き。ひきこもりオタクとしての『情熱』を、せどりの視点で語り尽くすケロ！"
 pubDate: "2026-02-08"
-heroImage: "../../assets/blog-placeholder-5.jpg"
+heroImage: '/blog-placeholder-4.jpg'
 category: "せどり・経済"
 ---
 

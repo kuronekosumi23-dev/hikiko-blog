@@ -2,7 +2,7 @@
 title: "MDウォークマン、デジカメ……「古い機械」に宿る魂と価値の探し方"
 description: "「動かないからゴミ」はもったいない！MDウォークマンや昔のコンデジなど、今再燃しているレトロ家電の魅力と、そこに眠る『お宝』の見極め方を伝授するケロ！"
 pubDate: "2026-02-08"
-heroImage: "../../assets/blog-placeholder-2.jpg"
+heroImage: '/blog-placeholder-4.jpg'
 category: "せどり・経済"
 ---
 

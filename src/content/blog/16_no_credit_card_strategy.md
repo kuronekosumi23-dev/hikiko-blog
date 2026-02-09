@@ -2,7 +2,7 @@
 title: "クレジットカードが持てない時期の「せどり」生存戦略"
 description: "「クレカがないとせどりはできない」なんて嘘。現金仕入れとデビットカードを武器に、底辺から這い上がってきたひきこもり流・資金繰りの知恵を語るケロ！"
 pubDate: "2026-02-08"
-heroImage: "../../assets/blog-placeholder-4.jpg"
+heroImage: '/blog-placeholder-4.jpg'
 category: "せどり・経済"
 ---
 

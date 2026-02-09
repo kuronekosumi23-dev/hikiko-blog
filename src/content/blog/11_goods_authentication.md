@@ -2,7 +2,7 @@
 title: "鑑定不要！？キャラグッズの「PSAに頼らない」真贋チェック術"
 description: "「これ、本物？」そんな不安を解消するために、ひきこもり生活で培った審美眼を全公開。ルーペ一つで世界が変わる、キャラグッズの真贋チェック術ケロ！"
 pubDate: "2026-02-08"
-heroImage: "../../assets/blog-placeholder-2.jpg"
+heroImage: '/blog-placeholder-4.jpg'
 category: "せどり・経済"
 ---
 

@@ -2,7 +2,7 @@
 title: "エトナ塾・パース修練記：立方体が歪むたびに「自分」の歪みと向き合った"
 description: "「1点パース」という基本に、ひきこもりの私が挑んだ記録。定規一本で世界に奥行きを作る作業は、いつの間にか自分自身の心を見つめ直す修行になっていました。"
 pubDate: "2026-02-08"
-heroImage: "../../assets/blog-placeholder-1.jpg"
+heroImage: '/blog-placeholder-4.jpg'
 category: "爆走アート"
 ---
 

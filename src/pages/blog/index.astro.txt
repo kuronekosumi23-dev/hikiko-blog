@@ -1,0 +1,234 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import Header from '../../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			main {
+				width: 960px;
+			}
+			ul {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 2rem;
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
+			}
+			ul li {
+				width: calc(50% - 1rem);
+			}
+			ul li * {
+				text-decoration: none;
+				transition: 0.2s ease;
+			}
+			ul li:first-child {
+				width: 100%;
+				margin-bottom: 1rem;
+				text-align: center;
+			}
+			ul li:first-child img {
+				width: 100%;
+			}
+			ul li:first-child .title {
+				font-size: 2.369rem;
+			}
+			ul li img {
+				margin-bottom: 0.5rem;
+				border-radius: 12px;
+			}
+			ul li a {
+				display: block;
+			}
+			.title {
+				margin: 0;
+				color: rgb(var(--black));
+				line-height: 1;
+			}
+			.date {
+				margin: 0;
+				color: rgb(var(--gray));
+			}
+			ul li a:hover h4,
+			ul li a:hover .date {
+				color: rgb(var(--accent));
+			}
+			ul a:hover img {
+				box-shadow: var(--box-shadow);
+			}
+			@media (max-width: 720px) {
+				ul {
+					gap: 0.5em;
+				}
+				ul li {
+					width: 100%;
+					text-align: center;
+				}
+				ul li:first-child {
+					margin-bottom: 0;
+				}
+				ul li:first-child .title {
+					font-size: 1.563em;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		
+		<Header />
+		<main>
+			<div class="blog-layout">
+				<section class="posts-area">
+					<ul>
+						{
+							posts.map((post) => (
+								<li>
+									<a href={`/blog/${post.id}/`}>
+										{post.data.heroImage && (
+											typeof post.data.heroImage === 'string' ? (
+												<img width={720} height={360} src={post.data.heroImage} alt="" />
+											) : (
+												<Image width={720} height={360} src={post.data.heroImage} alt="" />
+											)
+										)}
+										<h4 class="title">{post.data.title}</h4>
+										<p class="date">
+											<FormattedDate date={post.data.pubDate} />
+										</p>
+									</a>
+								</li>
+							))
+						}
+					</ul>
+				</section>
+
+				<aside class="sidebar">
+					<div class="sidebar-card">
+						<h3>カテゴリー</h3>
+						<nav>
+							<ul>
+								<li><a href="#">🍝 生存戦略（せどり・株）</a></li>
+								<li><a href="#">🏠 ひきこもり日記</a></li>
+								<li><a href="#">🤖 </a>私語り</li>
+								<li><a href="#">🌱 </a>('ω')ノ</li>
+							</ul>
+						</nav>
+					</div>
+				</aside>
+			</div>
+		</main>
+		<Footer />
+
+		<style>
+			/* メイン全体の幅を少し広げてサイドバーのスペースを作る */
+			main {
+				width: 100%;
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 3em 1em;
+			}
+
+			/* 横並びのレイアウト設定 */
+			.blog-layout {
+				display: grid;
+				grid-template-columns: 1fr;
+				gap: 3rem;
+			}
+
+			@media (min-width: 900px) {
+				.blog-layout {
+					grid-template-columns: 2fr 1fr; /* 左2：右1の比率 */
+				}
+			}
+
+			/* 既存のリスト表示を微調整 */
+			.posts-area ul {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 2rem;
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
+			}
+			.posts-area ul li {
+				width: 100%; /* サイドバーがある時は1列または2列に */
+			}
+			@media (min-width: 600px) {
+				.posts-area ul li {
+					width: calc(50% - 1rem);
+				}
+			}
+			/* 最初の記事だけ大きくする演出を維持 */
+			.posts-area ul li:first-child {
+				width: 100%;
+				margin-bottom: 1rem;
+				text-align: center;
+			}
+
+			.title {
+				margin: 0;
+				color: rgb(var(--black));
+				line-height: 1.2;
+				font-size: 1.2rem;
+			}
+			.date {
+				margin: 0;
+				color: rgb(var(--gray));
+			}
+
+			/* サイドバーの見た目 */
+			.sidebar-card {
+				background: #fdfdfd;
+				padding: 1.5rem;
+				border-radius: 16px;
+				box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+				border: 1px solid #eee;
+				position: sticky;
+				top: 2rem;
+			}
+			.sidebar h3 {
+				font-size: 1.2rem;
+				border-bottom: 2px solid var(--accent);
+				margin-bottom: 1rem;
+				padding-bottom: 0.5rem;
+			}
+			.sidebar ul {
+				list-style: none;
+				padding: 0;
+				display: block; /* 横並びを防ぐ */
+			}
+			.sidebar li {
+				width: 100%;
+				margin-bottom: 0.8rem;
+			}
+			.sidebar a {
+				text-decoration: none;
+				color: var(--gray-dark);
+				font-weight: 500;
+			}
+			.sidebar a:hover {
+				color: var(--accent);
+			}
+
+			@media (max-width: 899px) {
+				.sidebar {
+					order: -1; /* スマホではサイドバーを上に持ってくる（生存戦略！） */
+				}
+			}
+		</style>
+	</body>
+	</body>
+</html>

@@ -230,5 +230,6 @@ const posts = (await getCollection('blog')).sort(
 			}
 		</style>
 	</body>
-	</body>
+	
 </html>
+

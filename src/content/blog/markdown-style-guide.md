@@ -2,14 +2,14 @@
 title: 'Markdown Style Guide'
 description: 'Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.'
 pubDate: 'Jun 19 2024'
-heroImage: '../../assets/blog-placeholder-1.jpg'
+heroImage: '/blog-placeholder-1.jpg'
 ---
 
 Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.
 
 ## Headings
 
-The following HTML `<h1>`—`<h6>` elements represent six levels of section headings. `<h1>` is the highest section level while `<h6>` is the lowest.
+The following HTML `<h1>`窶覗<h6>` elements represent six levels of section headings. `<h1>` is the highest section level while `<h6>` is the lowest.
 
 # H1
 
@@ -39,7 +39,7 @@ Itatur? Quiatae cullecum rem ent aut odis in re eossequodi nonsequ idebis ne sap
 
 ### Output
 
-![blog placeholder](../../assets/blog-placeholder-about.jpg)
+![blog placeholder](/blog-placeholder-about.jpg)
 
 ## Blockquotes
 
@@ -65,13 +65,13 @@ The blockquote element represents content that is quoted from another source, op
 
 ```markdown
 > Don't communicate by sharing memory, share memory by communicating.<br>
->  E<cite>Rob Pike[^1]</cite>
+> 窶・<cite>Rob Pike[^1]</cite>
 ```
 
 #### Output
 
 > Don't communicate by sharing memory, share memory by communicating.<br>
->  E<cite>Rob Pike[^1]</cite>
+> 窶・<cite>Rob Pike[^1]</cite>
 
 [^1]: The above quote is excerpted from Rob Pike's [talk](https://www.youtube.com/watch?v=PAAkCSZUG1c) during Gopherfest, November 18, 2015.
 
@@ -185,7 +185,7 @@ we can use 3 backticks ``` in new line and write snippet and close with 3 backti
   - Milk
   - Cheese
 
-## Other Elements  Eabbr, sub, sup, kbd, mark
+## Other Elements 窶・abbr, sub, sup, kbd, mark
 
 ### Syntax
 

@@ -173,10 +173,10 @@ const posts = (await getCollection('blog')).sort(
 						<h3>カテゴリー</h3>
 						<nav>
 							<ul>
-								<li><a href="#">🍝 生存戦略（せどり・株）</a></li>
-								<li><a href="#">🏠 ひきこもり日記</a></li>
-								<li><a href="#">🤖 私語り</a></li>
-								<li><a href="#">🌱 ('ω')ノ</a></li>
+								<li><a href="/blog">🍝 生存戦略（せどり・株）</a></li>
+								<li><a href="/blog">🏠 ひきこもり日記</a></li>
+								<li><a href="/blog">🤖 私語り</a></li>
+								<li><a href="/blog">🌱 ('ω')ノ</a></li>
 							</ul>
 						</nav>
 					</div>
@@ -186,4 +186,5 @@ const posts = (await getCollection('blog')).sort(
 		<Footer />
 	</body>
 </html>
+
 

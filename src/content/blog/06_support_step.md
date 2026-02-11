@@ -6,7 +6,6 @@ heroImage: "../../assets/blog-placeholder-about.jpg"
 category: "生存戦略"
 ---
 
-# 8年前の私が「サポステ」で踏み出した一歩：アラサーになった今振り返る支援の価値
 
 「外の世界なんて、自分を否定するものしか置いてない」
 

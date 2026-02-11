@@ -6,7 +6,6 @@ heroImage: "../../assets/blog-placeholder-2.jpg"
 category: "せどり・経済"
 ---
 
-# MDウォークマン、デジカメ……「古い機械」に宿る魂と価値の探し方
 
 こんにちは、ひき子です。
 

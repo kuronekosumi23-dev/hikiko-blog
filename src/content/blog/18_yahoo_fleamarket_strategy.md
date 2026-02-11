@@ -6,7 +6,6 @@ heroImage: "../../assets/blog-placeholder-3.jpg"
 category: "せどり・経済"
 ---
 
-# 【メソッド】スマホ1台で人生を変える。私がYahoo!フリマを主戦場に選んだ3つの合理的理由
 
 こんにちは、ひき子です。
 

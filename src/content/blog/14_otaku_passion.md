@@ -6,7 +6,6 @@ heroImage: "../../assets/blog-placeholder-5.jpg"
 category: "せどり・経済"
 ---
 
-# 私が愛する「オタク小物」の世界：缶バッジ1個の相場を追う情熱
 
 こんにちは、ひき子です。
 

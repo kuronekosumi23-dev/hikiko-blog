@@ -6,7 +6,6 @@ heroImage: '../../assets/blog-placeholder-2.jpg'
 category: 'Sedori'
 ---
 
-# 失敗を価値に変える生存戦略：仕入れボウズと不具合返品から「社会」を学んだこと
 
 こんにちは、ひき子です。
 

@@ -6,7 +6,6 @@ heroImage: "../../assets/blog-placeholder-about.jpg"
 category: "生存戦略"
 ---
 
-# 【密着】泥臭くて、温かい。謎多きひきこもりの「生存戦略」24時
 
 「ひきこもりって、一日中寝てるだけでしょ？」
 

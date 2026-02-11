@@ -6,7 +6,6 @@ heroImage: "../../assets/blog-placeholder-4.jpg"
 category: "せどり・経済"
 ---
 
-# クレジットカードが持てない時期の「せどり」生存戦略
 
 こんにちは、ひき子です。
 

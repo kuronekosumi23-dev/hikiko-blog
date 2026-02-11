@@ -6,7 +6,6 @@ heroImage: "../../assets/blog-placeholder-4.jpg"
 category: "生存戦略"
 ---
 
-# 0円運用ブログの作り方：Astro + Vercelで「家賃」を削る勇気
 
 こんにちは、ひき子です。
 

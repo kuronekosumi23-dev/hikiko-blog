@@ -6,7 +6,6 @@ heroImage: "../../assets/blog-placeholder-2.jpg"
 category: "せどり・経済"
 ---
 
-# 鑑定不要！？キャラグッズの「PSAに頼らない」真贋チェック術
 
 こんにちは、ひき子です。
 

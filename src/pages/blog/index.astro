@@ -17,7 +17,7 @@ const posts = (await getCollection('blog')).sort(
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 		<style>
-			/* 繝｡繧､繝ｳ蜈ｨ菴薙・蟷・ｒ蟆代＠蠎・￡縺ｦ繧ｵ繧､繝峨ヰ繝ｼ縺ｮ繧ｹ繝壹・繧ｹ繧剃ｽ懊ｋ */
+			/* メイン全体の幅を少し広げてサイドバーのスペースを作る */
 			main {
 				width: 100%;
 				max-width: 1200px;
@@ -25,7 +25,7 @@ const posts = (await getCollection('blog')).sort(
 				padding: 3em 1em;
 			}
 
-			/* 讓ｪ荳ｦ縺ｳ縺ｮ繝ｬ繧､繧｢繧ｦ繝郁ｨｭ螳・*/
+			/* 横並びのレイアウト設定 */
 			.blog-layout {
 				display: grid;
 				grid-template-columns: 1fr;
@@ -34,11 +34,11 @@ const posts = (await getCollection('blog')).sort(
 
 			@media (min-width: 900px) {
 				.blog-layout {
-					grid-template-columns: 2fr 1fr; /* 蟾ｦ2・壼承1縺ｮ豈皮紫 */
+					grid-template-columns: 2fr 1fr; /* 左2：右1の比率 */
 				}
 			}
 
-			/* 譌｢蟄倥・繝ｪ繧ｹ繝郁｡ｨ遉ｺ繧貞ｾｮ隱ｿ謨ｴ */
+			/* 既存のリスト表示を微調整 */
 			ul {
 				display: flex;
 				flex-wrap: wrap;
@@ -95,7 +95,7 @@ const posts = (await getCollection('blog')).sort(
 				box-shadow: var(--box-shadow);
 			}
 
-			/* 繧ｵ繧､繝峨ヰ繝ｼ縺ｮ隕九◆逶ｮ */
+			/* サイドバーの見た目 */
 			.sidebar-card {
 				background: #fdfdfd;
 				padding: 1.5rem;
@@ -170,13 +170,13 @@ const posts = (await getCollection('blog')).sort(
 
 				<aside class="sidebar">
 					<div class="sidebar-card">
-						<h3>繧ｫ繝・ざ繝ｪ繝ｼ</h3>
+						<h3>カテゴリー</h3>
 						<nav>
 							<ul>
-								<li><a href="/blog/逕溷ｭ俶姶逡･">狛 逕溷ｭ俶姶逡･・医○縺ｩ繧翫・譬ｪ・・/a></li>
-								<li><a href="/blog/縺ｲ縺阪％繧ゅｊ譌･險・>匠 縺ｲ縺阪％繧ゅｊ譌･險・/a></li>
-								<li><a href="/blog/辷・ｵｰ繧｢繝ｼ繝・>耳 辷・ｵｰ繧｢繝ｼ繝・/a></li>
-								<li><a href="/blog/(%27ﾏ・27)繝・>験 ('ﾏ・)繝・/a></li>
+								<li><a href="/blog/生存戦略">🌾 生存戦略（せどり・株）</a></li>
+								<li><a href="/blog/ひきこもり日記">🏠 ひきこもり日記</a></li>
+								<li><a href="/blog/爆走アート">🎨 爆走アート</a></li>
+								<li><a href="/blog/回想">🌱 回想</a></li>
 							</ul>
 						</nav>
 					</div>
@@ -186,4 +186,3 @@ const posts = (await getCollection('blog')).sort(
 		<Footer />
 	</body>
 </html>
-

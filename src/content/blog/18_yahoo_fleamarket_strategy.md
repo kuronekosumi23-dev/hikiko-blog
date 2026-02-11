@@ -3,9 +3,8 @@ title: "【メソッド】スマホ1台で人生を変える。私がYahoo!フ�
 description: "「メルカリじゃないの？」そんな疑問に、あえてYahoo!フリマ（旧PayPayフリマ）にこだわる、ひきこもり流・合理的せどり術を伝授するケロ！"
 pubDate: "2026-02-08"
 heroImage: "../../assets/blog-placeholder-3.jpg"
-category: "せどり・経済"
+category: '生存戦略'
 ---
-
 
 こんにちは、ひき子です。
 

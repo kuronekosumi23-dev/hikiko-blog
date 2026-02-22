@@ -2,7 +2,7 @@
 title: '【引きこもりは太るは幻想？】10年以上引きこもりのダイエット計画
 '
 description: '引きこもりは太る！引きこもりでも健康的に痩せるダイエット方法は何かある？？を今回は綴ります'
-pubDate: 'Feb 08 2026'
+pubDate: 'Feb 22 2026'
 heroImage: '/blog-placeholder-4.jpg'
 category: 'ひきこもり日記'
 ---

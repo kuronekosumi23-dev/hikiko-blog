@@ -1,0 +1,129 @@
+---
+import Layout from './BlogPost.astro';
+const title = 'お問い合わせ';
+const description = 'ひき子要塞へのお問い合わせフォームです。応援メッセージ、お仕事の依頼、またはひきこもりサバイバルに関するご質問など、こちらからお送りください。';
+---
+
+<Layout
+	title={title}
+	description={description}
+	pubDate={new Date('Feb 27 2026')}
+	heroImage="/blog-placeholder-about.jpg"
+>
+	<p>
+		私の「要塞」へ興味を持ってくださり、ありがとうございます。<br/>
+		普段は画面の向こう側の静寂の中で過ごしていますが、誰かと繋がれることは、私にとって小さな、でも確かな「勇気」になります。
+	</p>
+
+	<p>
+		応援メッセージ、ブログへのご感想、せどりに関するご質問、またはお仕事のご相談など、何かありましたら以下のフォームからお気軽に投げ込んでください！🍵💕
+	</p>
+
+	<div class="contact-warning">
+		<p>
+			⚠️ <strong>ご注意：</strong><br/>
+			基本的には深夜、または早朝にこっそりとお返事しています。<br/>
+			稀に「屍（かばね）状態」になっている時はお返事が遅れることがありますが、必ず目を通しますので、気長に待っていただけると嬉しいです。
+		</p>
+	</div>
+
+	<form action="#" method="POST" class="contact-form">
+		<div class="form-group">
+			<label for="name">お名前（ペンネームOK）</label>
+			<input type="text" id="name" name="name" required placeholder="例：名無しのサバイバーさん" />
+		</div>
+
+		<div class="form-group">
+			<label for="email">メールアドレス</label>
+			<input type="email" id="email" name="email" required placeholder="example@hikiko-survival.com" />
+		</div>
+
+		<div class="form-group">
+			<label for="subject">件名</label>
+			<input type="text" id="subject" name="subject" required placeholder="応援メッセージ / 質問 など" />
+		</div>
+
+		<div class="form-group">
+			<label for="message">メッセージ内容</label>
+			<textarea id="message" name="message" rows="8" required placeholder="ここに思いをぶつけてください..."></textarea>
+		</div>
+
+		<button type="submit" class="submit-btn" disabled>送信する（※現在デモ用のため未稼働です）</button>
+	</form>
+
+	<hr />
+
+	<p style="text-align: center;">
+		<a href="/about">← Aboutページ（ひき子とは？）に戻る</a>
+	</p>
+
+</Layout>
+
+<style>
+	.contact-warning {
+		background: #fff8e1;
+		border-left: 4px solid #ffc107;
+		padding: 1.5em;
+		margin: 2em 0;
+		border-radius: 8px;
+		font-size: 0.95rem;
+		color: #5d4037;
+	}
+	.contact-warning strong {
+		color: #e65100;
+	}
+
+	.contact-form {
+		background: #fdfdfd;
+		padding: 2em;
+		border-radius: 16px;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+		border: 1px solid #eee;
+		margin: 2em 0;
+	}
+
+	.form-group {
+		margin-bottom: 1.5em;
+	}
+
+	label {
+		display: block;
+		margin-bottom: 0.5em;
+		font-weight: bold;
+		color: var(--gray-dark);
+	}
+
+	input, textarea {
+		width: 100%;
+		padding: 0.8em;
+		border: 1px solid #ddd;
+		border-radius: 8px;
+		font-size: 1rem;
+		background: white;
+		transition: border-color 0.2s;
+	}
+
+	input:focus, textarea:focus {
+		outline: none;
+		border-color: var(--accent);
+	}
+
+	.submit-btn {
+		display: block;
+		width: 100%;
+		padding: 1em;
+		background: var(--accent);
+		color: white;
+		border: none;
+		border-radius: 8px;
+		font-size: 1.1rem;
+		font-weight: bold;
+		cursor: not-allowed;
+		opacity: 0.7;
+		transition: background 0.3s;
+	}
+
+	.submit-btn:hover {
+		background: var(--accent-dark);
+	}
+</style>

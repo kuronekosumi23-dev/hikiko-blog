@@ -1,4 +1,4 @@
----
+----
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
@@ -14,10 +14,13 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 		<Header />
 		<main>
 			<section class="hero">
+				<div class="hero-image-container">
+					<img src="/team_gathering.jpg" alt="ひき子要塞とチームの集合写真" class="hero-image" />
+				</div>
 				<h1>専業ひきこもりの生存戦略</h1>
 				<p class="subtitle">家から一歩も出なくても、人生は最高に有意義だ。</p>
 				<p class="description">
-					ここは、社会の喧騒から離れた「空飛ぶ要塞」。<br/>
+					ここは、社会の喧騒から離れた「空飛ぶお城」。<br/>
 					推しを愛で、健康を育み、時々せどりで糧を得る。<br/>
 					孤独ではない、自立した「ひきこもり」の新しい形を記録しています。
 				</p>
@@ -65,10 +68,23 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 		<style>
 			.hero {
 				text-align: center;
-				padding: 4em 0;
+				padding: 2em 0 4em;
 				background: linear-gradient(rgba(var(--accent), 0.1), transparent);
 				border-radius: 12px;
 				margin-bottom: 3em;
+			}
+			.hero-image-container {
+				margin-bottom: 2em;
+				border-radius: 12px;
+				overflow: hidden;
+				box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+			}
+			.hero-image {
+				width: 100%;
+				height: auto;
+				display: block;
+				max-height: 500px;
+				object-fit: cover;
 			}
 			.hero h1 {
 				font-size: clamp(1.8rem, 6vw, 2.5rem);
@@ -88,6 +104,19 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				margin: 0 auto;
 				line-height: 1.8;
 				color: var(--gray);
+			}
+			/* モバイル向けの文字サイズ調整 */
+			@media (max-width: 720px) {
+				.hero h1 {
+					font-size: 1.6rem; /* スマホではタイトルを少し小さく */
+				}
+				.subtitle {
+					font-size: 0.95rem; /* サブタイトルもスッキリ */
+				}
+				.description {
+					font-size: 1.05rem; /* 説明文は読みやすく少し大きく */
+					line-height: 1.7;
+				}
 			}
 			.team h2 {
 				text-align: center;
@@ -170,3 +199,4 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 		<Footer />
 	</body>
 </html>
+

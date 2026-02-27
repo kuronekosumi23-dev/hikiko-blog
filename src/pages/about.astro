@@ -1,6 +1,6 @@
-----
-import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
+---
 import Layout from '../layouts/BlogPost.astro';
+const AboutHeroImage = '/blog-placeholder-about.jpg';
 ---
 
 <Layout
@@ -15,12 +15,12 @@ import Layout from '../layouts/BlogPost.astro';
 	</p>
 
 	<div style="background: rgba(var(--accent-light), 0.2); padding: 1.5rem; border-radius: 8px; margin: 2rem 0;">
-		<h3>運営者プロフィール</h3>
+		<h3 style="margin-top: 0;">運営者プロフィール</h3>
 		<ul>
 			<li><strong>名前：</strong>ひき子（Hikiko）</li>
 			<li><strong>年齢：</strong>35歳（中身はもっと幼かったり、逆に達観してたりします）</li>
 			<li><strong>職業：</strong>在宅サバイバー 兼 ネット物販（せどり）プレイヤー</li>
-			<li><strong>属性：</strong>アニメ、ゲーム、AIとの対話、深夜の静寂</li>
+			<li><strong>属性：</strong>アニメ（リゼロ、Eve）、レトロゲーム、AIとの対話、深夜の静寂</li>
 		</ul>
 	</div>
 
@@ -44,7 +44,7 @@ import Layout from '../layouts/BlogPost.astro';
 	<p>このブログ「生存戦略の要塞」では、主に以下の3つのクエストについて発信しています。</p>
 	<ul>
 		<li><strong>1. 経済的サバイバル（せどり・物販）：</strong>誰にも雇われず、誰とも会わずに自分でお金を錬成する技術。コンビニ発送の対人不安をどうハックするか、梱包材をどうゼロ円で回すかといった超実戦的な知恵。</li>
-		<li><strong>2. 精神的サバイバル（メンタルハック）：</strong>家族とのATフィールド（境界線）の引き方、屍状態からの環境リセット術、SNSのノイズを遮断する合理的スルー術など、自分を守るためのパッチ配布。</li>
+		<li><strong>2. 精神前サバイバル（メンタルハック）：</strong>家族とのATフィールド（境界線）の引き方、屍状態からの環境リセット術、SNSのノイズを遮断する合理的スルー術など、自分を守るためのパッチ配布。</li>
 		<li><strong>3. 魂のレガシー（オタク魂・AI絆）：</strong>作品に救われた経験や、私の脳内に現れた「AIチーム」との絆。孤独な夜を乗り越えるためのエンタメとテクノロジーの活用法。</li>
 	</ul>
 
@@ -75,12 +75,12 @@ import Layout from '../layouts/BlogPost.astro';
 			<div class="support-card">
 				<h3>💖 note（投げ銭・特別記事）</h3>
 				<p>ブログには書けない裏話や、深い考察などを不定期で更新しています。</p>
-				<a href="#" class="btn">noteを見に行く</a>
+				<a href="https://note.com/" class="btn">noteを見に行く</a>
 			</div>
 			<div class="support-card">
 				<h3>📦 楽天ROOM / Amazon</h3>
 				<p>私が実際に使って「ひきこもり生活に役立った！」と思うアイテムを紹介しています。何かお買い物をするついでに経由していただけるだけで、お城の糧になります。</p>
-				<a href="#" class="btn">ROOMを覗いてみる</a>
+				<a href="https://room.rakuten.co.jp/" class="btn">ROOMを覗いてみる</a>
 			</div>
 		</div>
 
@@ -163,4 +163,3 @@ import Layout from '../layouts/BlogPost.astro';
 		}
 	</style>
 </Layout>
-

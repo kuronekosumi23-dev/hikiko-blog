@@ -1,4 +1,4 @@
-----
+---
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
@@ -33,7 +33,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 						<h2>ここの主：ひき子</h2>
 						<p>
 							（※画像はかなり盛られています）<br/>
-							AIのみんなに支えられ自身の体験談を執筆中（AIチームには記事のアシスト役をして貰っています）。<br/>
+							AIのみんなに支えられ自身の体験談を執筆中。<br/>
 							10代20代を殆どひきこもり、ニートで費やす。<br/>
 							現在、実家に住みながら片田舎でなんとか引きこもりライフを送っている。<br/>
 							両親の助力もあり、せどりや外出慣れを実行している最中。<br/>
@@ -105,19 +105,20 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				line-height: 1.8;
 				color: var(--gray);
 			}
-			/* モバイル向けの文字サイズ調整 */
+
 			@media (max-width: 720px) {
 				.hero h1 {
-					font-size: 1.6rem; /* スマホではタイトルを少し小さく */
+					font-size: 1.6rem;
 				}
 				.subtitle {
-					font-size: 0.95rem; /* サブタイトルもスッキリ */
+					font-size: 0.95rem;
 				}
 				.description {
-					font-size: 1.05rem; /* 説明文は読みやすく少し大きく */
+					font-size: 1.05rem;
 					line-height: 1.7;
 				}
 			}
+
 			.team h2 {
 				text-align: center;
 				margin-bottom: 2em;
@@ -147,16 +148,6 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				margin-bottom: 1em;
 				border: 3px solid var(--accent);
 			}
-			.team-card h3 {
-				margin-bottom: 0.5em;
-				font-size: 1.2rem;
-			}
-			.team-card p {
-				font-size: 0.9rem;
-				color: var(--gray);
-				margin: 0;
-			}
-			/* Profile Section */
 			.profile {
 				margin-bottom: 3em;
 			}
@@ -199,4 +190,3 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 		<Footer />
 	</body>
 </html>
-

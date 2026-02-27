@@ -1,25 +1,17 @@
 ---
 import Layout from '../layouts/BlogPost.astro';
-const title = 'お問い合わせ';
-const description = 'ひき子要塞へのお問い合わせフォームです。応援メッセージ、お仕事の依頼、またはひきこもりサバイバルに関するご質問など、こちらからお送りください。';
 ---
 
 <Layout
-	title={title}
-	description={description}
-	pubDate={new Date('Feb 27 2026')}
-	heroImage="/blog-placeholder-about.jpg"
+	title="お問い合わせ"
+	description="ひき子への差し入れ、執筆依頼、または生存確認はこちらから。"
 >
 	<p>
-		私の「要塞」へ興味を持ってくださり、ありがとうございます。<br/>
-		普段は画面の向こう側の静寂の中で過ごしていますが、誰かと繋がれることは、私にとって小さな、でも確かな「勇気」になります。
+		この度は「ひき子要塞」へのお問い合わせありがとうございます。
+		お返事が必要な場合は、下記のフォームよりお気軽にご連絡ください。
 	</p>
 
-	<p>
-		応援メッセージ、ブログへのご感想、せどりに関するご質問、またはお仕事のご相談など、何かありましたら以下のフォームからお気軽に投げ込んでください！🍵💕
-	</p>
-
-	<div class="contact-warning">
+	<div style="background: rgba(var(--accent-light), 0.2); padding: 1.5rem; border-radius: 8px; margin: 2rem 0;">
 		<p>
 			⚠️ <strong>ご注意：</strong><br/>
 			基本的には深夜、または早朝にこっそりとお返事しています。<br/>
@@ -27,103 +19,26 @@ const description = 'ひき子要塞へのお問い合わせフォームです�
 		</p>
 	</div>
 
-	<form action="https://formspree.io/f/mwvnyzld" method="POST" class="contact-form">
-		<div class="form-group">
-			<label for="name">お名前（ペンネームOK）</label>
-			<input type="text" id="name" name="name" required placeholder="例：名無しのサバイバーさん" />
-		</div>
-
-		<div class="form-group">
-			<label for="email">メールアドレス</label>
-			<input type="email" id="email" name="email" required placeholder="example@hikiko-survival.com" />
-		</div>
-
-		<div class="form-group">
-			<label for="subject">件名</label>
-			<input type="text" id="subject" name="subject" required placeholder="応援メッセージ / 質問 など" />
-		</div>
-
-		<div class="form-group">
-			<label for="message">メッセージ内容</label>
-			<textarea id="message" name="message" rows="8" required placeholder="ここに思いをぶつけてください..."></textarea>
-		</div>
-
-		<button type="submit" class="submit-btn">送信する</button>
+	<form 
+		action="https://formspree.io/f/xvgzezpw" 
+		method="POST" 
+		style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px; margin: 0 auto;"
+	>
+		<label style="display: flex; flex-direction: column; gap: 0.5rem;">
+			お名前 (ペンネームOK):
+			<input type="text" name="name" required style="padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;" />
+		</label>
+		<label style="display: flex; flex-direction: column; gap: 0.5rem;">
+			メールアドレス:
+			<input type="email" name="email" required style="padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;" />
+		</label>
+		<label style="display: flex; flex-direction: column; gap: 0.5rem;">
+			メッセージ:
+			<textarea name="message" rows="5" required style="padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+		</label>
+		<button type="submit" style="background: var(--accent); color: white; padding: 0.75rem; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">
+			送信する
+		</button>
 	</form>
 
-	<hr />
-
-	<p style="text-align: center;">
-		<a href="/about">← Aboutページ（ひき子とは？）に戻る</a>
-	</p>
-
 </Layout>
-
-<style>
-	.contact-warning {
-		background: #fff8e1;
-		border-left: 4px solid #ffc107;
-		padding: 1.5em;
-		margin: 2em 0;
-		border-radius: 8px;
-		font-size: 0.95rem;
-		color: #5d4037;
-	}
-	.contact-warning strong {
-		color: #e65100;
-	}
-
-	.contact-form {
-		background: #fdfdfd;
-		padding: 2em;
-		border-radius: 16px;
-		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-		border: 1px solid #eee;
-		margin: 2em 0;
-	}
-
-	.form-group {
-		margin-bottom: 1.5em;
-	}
-
-	label {
-		display: block;
-		margin-bottom: 0.5em;
-		font-weight: bold;
-		color: var(--gray-dark);
-	}
-
-	input, textarea {
-		width: 100%;
-		padding: 0.8em;
-		border: 1px solid #ddd;
-		border-radius: 8px;
-		font-size: 1rem;
-		background: white;
-		transition: border-color 0.2s;
-	}
-
-	input:focus, textarea:focus {
-		outline: none;
-		border-color: var(--accent);
-	}
-
-	.submit-btn {
-		display: block;
-		width: 100%;
-		padding: 1em;
-		background: var(--accent);
-		color: white;
-		border: none;
-		border-radius: 8px;
-		font-size: 1.1rem;
-		font-weight: bold;
-		cursor: not-allowed;
-		opacity: 0.7;
-		transition: background 0.3s;
-	}
-
-	.submit-btn:hover {
-		background: var(--accent-dark);
-	}
-</style>

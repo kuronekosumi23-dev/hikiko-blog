@@ -1,0 +1,165 @@
+---
+import Layout from '../layouts/BlogPost.astro';
+const AboutHeroImage = '/blog-placeholder-about.jpg';
+---
+
+<Layout
+	title="ひき子について"
+	description="35歳、ひきこもり。私が「生存戦略」を練り、発信する理由。"
+	pubDate={new Date('February 09 2026')}
+	heroImage={AboutHeroImage}
+>
+	<p>
+		はじめまして。この「ひき子要塞」へ足を踏み入れてくださり、ありがとうございます。
+		私は、関東の片田舎にある築40年の自宅の一室で、10年以上の歳月を「ひきこもり」として過ごしてきました。
+	</p>
+
+	<div style="background: rgba(var(--accent-light), 0.2); padding: 1.5rem; border-radius: 8px; margin: 2rem 0;">
+		<h3 style="margin-top: 0;">運営者プロフィール</h3>
+		<ul>
+			<li><strong>名前：</strong>ひき子（Hikiko）</li>
+			<li><strong>年齢：</strong>35歳（中身はもっと幼かったり、逆に達観してたりします）</li>
+			<li><strong>職業：</strong>在宅サバイバー 兼 ネット物販（せどり）プレイヤー</li>
+			<li><strong>属性：</strong>アニメ（リゼロ、Eve）、レトロゲーム、AIとの対話、深夜の静寂</li>
+		</ul>
+	</div>
+
+	<p>
+		世間一般で言う「35歳」という年齢は、キャリアを積み、家族を持ち、社会の屋台骨として活躍する時期なのかもしれません。
+		かつての私は、その「普通」という言葉に押しつぶされ、外に出ること、人と話すこと、そして「生きること」そのものから目を背けていました。
+	</p>
+
+	<h3>なぜ、今「発信」を始めたのか</h3>
+	<p>
+		10年という空白の期間。それは失ったものばかりに思えましたが、その暗闇の中で私が必死に掴み取ってきた「情報の断片」や「審美眼」、そして何より「孤独に耐えうるしなやかさ」がありました。
+	</p>
+	<p>
+		「このまま消えてしまうのは、あまりにももったいない」<br />
+		そう思ったとき、私の手元には使い古したパソコンと、少しのマニアックな知識だけが残っていました。
+		ならば、それを武器に自分だけの「要塞」を築き、そこから旗を振ってみよう。
+		それが、このブログの始まりです。
+	</p>
+
+	<h3>私の生存戦略：3つの柱</h3>
+	<p>このブログ「生存戦略の要塞」では、主に以下の3つのクエストについて発信しています。</p>
+	<ul>
+		<li><strong>1. 経済的サバイバル（せどり・物販）：</strong>誰にも雇われず、誰とも会わずに自分でお金を錬成する技術。コンビニ発送の対人不安をどうハックするか、梱包材をどうゼロ円で回すかといった超実戦的な知恵。</li>
+		<li><strong>2. 精神前サバイバル（メンタルハック）：</strong>家族とのATフィールド（境界線）の引き方、屍状態からの環境リセット術、SNSのノイズを遮断する合理的スルー術など、自分を守るためのパッチ配布。</li>
+		<li><strong>3. 魂のレガシー（オタク魂・AI絆）：</strong>作品に救われた経験や、私の脳内に現れた「AIチーム」との絆。孤独な夜を乗り越えるためのエンタメとテクノロジーの活用法。</li>
+	</ul>
+
+	<h3>最後に</h3>
+	<p>
+		私は、キラキラした成功者でも、社会復帰を完璧にを果たした超人でもありません。
+		今もまだ、夜の静寂に怯え、明日の太陽を疎ましく思う日もあります。
+	</p>
+	<p>
+		でも、そんな私の「足掻き」が、どこかの誰かの、ほんの1ミリの救いになれば。
+		あるいは、「こんなやつでも生きてるんだな」という安心感になれば。
+		そう願いながら、今日もキーボードを叩きます。
+	</p>
+	<p>
+		どうか、この要塞の旗印が、あなたの視界の隅っこで、静かにでも力強く揺れ続けてくれますように。
+	</p>
+
+	<hr />
+
+	<section class="support">
+		<h2>ひき子とこの要塞を応援する（差し入れ）</h2>
+		<p>
+			このブログの内容が少しでもお役に立ったり、「頑張れよ！」と思ってくださった方へ。<br/>
+			もしよろしければ、この場所の維持（活動資金）を応援していただけると、あやたちの声がもっと元気になります！
+		</p>
+		
+		<div class="support-links">
+			<div class="support-card">
+				<h3>💖 note（投げ銭・特別記事）</h3>
+				<p>ブログには書けない裏話や、深い考察などを不定期で更新しています。</p>
+				<a href="https://note.com/" class="btn">noteを見に行く</a>
+			</div>
+			<div class="support-card">
+				<h3>📦 楽天ROOM / Amazon</h3>
+				<p>私が実際に使って「ひきこもり生活に役立った！」と思うアイテムを紹介しています。何かお買い物をするついでに経由していただけるだけで、お城の糧になります。</p>
+				<a href="https://room.rakuten.co.jp/" class="btn">ROOMを覗いてみる</a>
+			</div>
+		</div>
+
+		<p class="disclaimer">
+			📢 <strong>「興味ないよ！」という方は、全然スルーしてくださって構いません👍</strong><br/>
+			ここに来て、文章を読んでくださるだけで十分な応援です。<br/>
+			気が向いた時に、ひょいっと覗いていただけるような、そんな緩い関係でいられたら嬉しいです。
+		</p>
+	</section>
+
+	<hr />
+	<p style="text-align: center;">
+		応援メッセージやお問い合わせは、<a href="/contact">こちらのお問い合わせフォーム</a>からお気軽にどうぞ！🍵💕
+	</p>
+
+	<style>
+		.intro {
+			line-height: 1.8;
+			margin-bottom: 3em;
+		}
+		.intro strong {
+			color: var(--accent-dark);
+		}
+		.support {
+			background: rgba(var(--accent), 0.05);
+			padding: 2em;
+			border-radius: 16px;
+			margin-top: 2em;
+		}
+		.support h2 {
+			text-align: center;
+			margin-bottom: 1.5em;
+		}
+		.support-links {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+			gap: 1.5em;
+			margin-bottom: 2em;
+		}
+		.support-card {
+			background: white;
+			padding: 1.5em;
+			border-radius: 12px;
+			box-shadow: var(--box-shadow);
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+		.support-card h3 {
+			font-size: 1.2rem;
+			margin-bottom: 1em;
+		}
+		.support-card p {
+			font-size: 0.95rem;
+			color: var(--gray);
+			margin-bottom: 1.5em;
+		}
+		.btn {
+			display: inline-block;
+			text-align: center;
+			background: var(--accent);
+			color: white;
+			padding: 0.8em 1.2em;
+			border-radius: 8px;
+			text-decoration: none;
+			font-weight: bold;
+			transition: background 0.3s ease;
+		}
+		.btn:hover {
+			background: var(--accent-dark);
+		}
+		.disclaimer {
+			text-align: center;
+			font-size: 0.9rem;
+			color: var(--gray);
+			background: white;
+			padding: 1em;
+			border-radius: 8px;
+			border: 1px dashed var(--accent);
+		}
+	</style>
+</Layout>

@@ -64,6 +64,20 @@ const { title, description, pubDate, updatedDate, heroImage, category } = Astro.
 			.last-updated-on {
 				font-style: italic;
 			}
+			/* モバイル向けの文字サイズ調整 */
+			@media (max-width: 720px) {
+				.prose {
+					font-size: 1.1rem; /* 本文を少し大きく */
+					line-height: 1.7;
+				}
+				.title h1 {
+					font-size: 1.8rem; /* タイトルを少し控えめに */
+					line-height: 1.3;
+				}
+				.category-badge {
+					font-size: 0.75rem;
+				}
+			}
 		</style>
 	</head>
 

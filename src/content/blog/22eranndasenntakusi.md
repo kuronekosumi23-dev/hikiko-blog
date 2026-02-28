@@ -2,7 +2,7 @@
 title: '【人生の選択】ひきこもりだから「諦めた」じゃない「選んだ」子供という生命の選択'
 description: '35歳ひきこもりのひき子（Hikiko）が、「子供を持たない」という選択をポジティブな生存戦略として再定義。自分自身の心と生活を守るための「誠実な選択」について、内省的な視点で語ります。'
 pubDate: 'Feb 08 2026'
-heroImage: '/blog-placeholder-4.jpg'
+heroImage: '/ketudann.webp'
 category: '生存戦略'
 ---
 

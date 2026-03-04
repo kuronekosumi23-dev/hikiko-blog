@@ -29,7 +29,12 @@ const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
 		<BaseHead title={`${category} | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
 		<style>
 			main {
-				width: 960px;
+				width: 100%;
+				max-width: 960px;
+				margin: 0 auto;
+				padding: 3em 1em;
+				box-sizing: border-box;
+				overflow-x: hidden;
 			}
 			ul {
 				display: flex;
@@ -40,7 +45,13 @@ const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
 				padding: 0;
 			}
 			ul li {
-				width: calc(50% - 1rem);
+				width: 100%;
+				box-sizing: border-box;
+			}
+			@media (min-width: 600px) {
+				ul li {
+					width: calc(50% - 1rem);
+				}
 			}
 			ul li * {
 				text-decoration: none;
@@ -51,23 +62,20 @@ const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
 				margin-bottom: 1rem;
 				text-align: center;
 			}
-			ul li:first-child img {
-				width: 100%;
-			}
-			ul li:first-child .title {
-				font-size: 2.369rem;
-			}
 			ul li img {
-				margin-bottom: 0.5rem;
-				border-radius: 12px;
-			}
-			ul li a {
 				display: block;
+				max-width: 100% !important;
+				height: auto !important;
+				margin: 0 auto 0.5rem;
+				border-radius: 12px;
+				object-fit: cover;
 			}
 			.title {
 				margin: 0;
 				color: rgb(var(--black));
-				line-height: 1;
+				line-height: 1.2;
+				font-size: 1.25rem;
+				word-wrap: break-word;
 			}
 			.date {
 				margin: 0;
@@ -79,21 +87,6 @@ const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
 			}
 			ul a:hover img {
 				box-shadow: var(--box-shadow);
-			}
-			@media (max-width: 720px) {
-				ul {
-					gap: 0.5em;
-				}
-				ul li {
-					width: 100%;
-					text-align: center;
-				}
-				ul li:first-child {
-					margin-bottom: 0;
-				}
-				ul li:first-child .title {
-					font-size: 1.563em;
-				}
 			}
 			.category-title {
 				margin-bottom: 2rem;

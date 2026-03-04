@@ -23,6 +23,8 @@ const posts = (await getCollection('blog')).sort(
 				max-width: 1200px;
 				margin: 0 auto;
 				padding: 3em 1em;
+				box-sizing: border-box;
+				overflow-x: hidden;
 			}
 
 			/* 横並びのレイアウト設定 */
@@ -30,6 +32,7 @@ const posts = (await getCollection('blog')).sort(
 				display: grid;
 				grid-template-columns: 1fr;
 				gap: 3rem;
+				overflow: hidden; /* はみ出し防止 */
 			}
 
 			@media (min-width: 900px) {
@@ -38,8 +41,8 @@ const posts = (await getCollection('blog')).sort(
 				}
 			}
 
-			/* 既存のリスト表示を微調整 */
-			ul {
+			/* 記事リスト */
+			.posts-area ul {
 				display: flex;
 				flex-wrap: wrap;
 				gap: 2rem;
@@ -47,59 +50,42 @@ const posts = (await getCollection('blog')).sort(
 				margin: 0;
 				padding: 0;
 			}
-			ul li {
+			.posts-area ul li {
 				width: 100%;
+				box-sizing: border-box;
 			}
 			@media (min-width: 600px) {
-				ul li {
+				.posts-area ul li {
 					width: calc(50% - 1rem);
 				}
 			}
-			ul li * {
+			.posts-area ul li * {
 				text-decoration: none;
 				transition: 0.2s ease;
 			}
-			ul li:first-child {
+			.posts-area ul li:first-child {
 				width: 100%;
 				margin-bottom: 1rem;
 				text-align: center;
 			}
-			ul li:first-child img {
-				width: 100%;
-			}
-			ul li:first-child .title {
-				font-size: 2.369rem;
-			}
-			ul li img {
+			.posts-area ul li img {
 				display: block;
-				max-width: 100%;
-				height: auto;
-				margin-bottom: 0.5rem;
+				max-width: 100% !important;
+				height: auto !important;
+				margin: 0 auto 0.5rem;
 				border-radius: 12px;
+				object-fit: cover;
 			}
-			ul li a {
-				display: block;
-			}
-			.title {
+			.posts-area .title {
 				margin: 0;
 				color: rgb(var(--black));
 				line-height: 1.2;
-				font-size: 1.2rem;
+				font-size: 1.25rem;
 				word-wrap: break-word;
-			}
-			.date {
-				margin: 0;
-				color: rgb(var(--gray));
-			}
-			ul li a:hover h4,
-			ul li a:hover .date {
-				color: rgb(var(--accent));
-			}
-			ul a:hover img {
-				box-shadow: var(--box-shadow);
+				overflow-wrap: break-word;
 			}
 
-			/* サイドバーの見た目 */
+			/* サイドバー */
 			.sidebar-card {
 				background: #fdfdfd;
 				padding: 1.5rem;
@@ -118,17 +104,25 @@ const posts = (await getCollection('blog')).sort(
 			.sidebar ul {
 				list-style: none;
 				padding: 0;
-				display: block;
+				margin: 0;
 			}
 			.sidebar li {
-				width: 100%;
-				margin-bottom: 0.8rem;
-				text-align: left;
+				margin-bottom: 1rem;
 			}
 			.sidebar a {
 				text-decoration: none;
 				color: var(--gray-dark);
 				font-weight: 500;
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				transition: color 0.2s;
+			}
+			.sidebar a span.icon {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				width: 1.5em; /* アイコンの幅を固定して文字の位置を揃える */
 			}
 			.sidebar a:hover {
 				color: var(--accent);
@@ -137,9 +131,10 @@ const posts = (await getCollection('blog')).sort(
 			@media (max-width: 899px) {
 				.sidebar {
 					order: -1;
+					margin-bottom: 2rem;
 				}
-				ul li:first-child .title {
-					font-size: 1.563em;
+				.posts-area ul li:first-child .title {
+					font-size: 1.5rem;
 				}
 			}
 		</style>
@@ -177,10 +172,10 @@ const posts = (await getCollection('blog')).sort(
 						<h3>カテゴリー</h3>
 						<nav>
 							<ul>
-								<li><a href="/blog/生存戦略">🌾生存戦略（せどり・株）</a></li>
-								<li><a href="/blog/ひきこもり日記">🏠ひきこもり日記</a></li>
-								<li><a href="/blog/爆走アート">🎨爆走アート</a></li>
-								<li><a href="/blog/回想">🌱回想</a></li>
+								<li><a href="/blog/生存戦略"><span class="icon">🌾</span><span>生存戦略</span></a></li>
+								<li><a href="/blog/ひきこもり日記"><span class="icon">🏠</span><span>ひきこもり日記</span></a></li>
+								<li><a href="/blog/爆走アート"><span class="icon">🎨</span><span>爆走アート</span></a></li>
+								<li><a href="/blog/回想"><span class="icon">🌱</span><span>回想</span></a></li>
 							</ul>
 						</nav>
 					</div>

@@ -1,187 +1,176 @@
 ---
-import { Image } from 'astro:assets';
-import { getCollection } from 'astro:content';
-import BaseHead from '../../components/BaseHead.astro';
-import Footer from '../../components/Footer.astro';
-import FormattedDate from '../../components/FormattedDate.astro';
-import Header from '../../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
-
-const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 ---
 
 <!doctype html>
 <html lang="ja">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<style>
-			/* メイン全体の幅を少し広げてサイドバーのスペースを作る */
-			main {
-				width: 100%;
-				max-width: 1200px;
-				margin: 0 auto;
-				padding: 3em 1em;
-				box-sizing: border-box;
-				overflow-x: hidden;
-			}
-
-			/* 横並びのレイアウト設定 */
-			.blog-layout {
-				display: grid;
-				grid-template-columns: 1fr;
-				gap: 3rem;
-				overflow: hidden; /* はみ出し防止 */
-			}
-
-			@media (min-width: 900px) {
-				.blog-layout {
-					grid-template-columns: 2fr 1fr; /* 左2：右1の比率 */
-				}
-			}
-
-			/* 記事リスト */
-			.posts-area ul {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 2rem;
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
-			}
-			.posts-area ul li {
-				width: 100%;
-				box-sizing: border-box;
-			}
-			@media (min-width: 600px) {
-				.posts-area ul li {
-					width: calc(50% - 1rem);
-				}
-			}
-			.posts-area ul li * {
-				text-decoration: none;
-				transition: 0.2s ease;
-			}
-			.posts-area ul li:first-child {
-				width: 100%;
-				margin-bottom: 1rem;
-				text-align: center;
-			}
-			.posts-area ul li img {
-				display: block;
-				max-width: 100% !important;
-				height: auto !important;
-				margin: 0 auto 0.5rem;
-				border-radius: 12px;
-				object-fit: cover;
-			}
-			.posts-area .title {
-				margin: 0;
-				color: rgb(var(--black));
-				line-height: 1.2;
-				font-size: 1.25rem;
-				word-wrap: break-word;
-				overflow-wrap: break-word;
-			}
-
-			/* サイドバー */
-			.sidebar-card {
-				background: #fdfdfd;
-				padding: 1.5rem;
-				border-radius: 16px;
-				box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-				border: 1px solid #eee;
-				position: sticky;
-				top: 2rem;
-			}
-			.sidebar h3 {
-				font-size: 1.2rem;
-				border-bottom: 2px solid var(--accent);
-				margin-bottom: 1rem;
-				padding-bottom: 0.5rem;
-			}
-			.sidebar ul {
-				list-style: none;
-				padding: 0;
-				margin: 0;
-			}
-			.sidebar li {
-				margin-bottom: 1rem;
-			}
-			.sidebar a {
-				text-decoration: none;
-				color: var(--gray-dark);
-				font-weight: 500;
-				display: flex;
-				align-items: center;
-				gap: 0.5rem;
-				transition: color 0.2s;
-			}
-			.sidebar a span.icon {
-				display: inline-flex;
-				align-items: center;
-				justify-content: center;
-				width: 1.5em; /* アイコンの幅を固定して文字の位置を揃える */
-			}
-			.sidebar a:hover {
-				color: var(--accent);
-			}
-
-			@media (max-width: 899px) {
-				.sidebar {
-					order: -1;
-					margin-bottom: 2rem;
-				}
-				.posts-area ul li:first-child .title {
-					font-size: 1.5rem;
-				}
-			}
-		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<div class="blog-layout">
-				<section class="posts-area">
-					<ul>
-						{
-							posts.map((post) => (
-								<li>
-									<a href={`/blog/${post.id}/`}>
-										{post.data.heroImage && (
-											typeof post.data.heroImage === 'string' ? (
-												<img width={720} height={360} src={post.data.heroImage} alt="" />
-											) : (
-												<Image width={720} height={360} src={post.data.heroImage} alt="" />
-											)
-										)}
-										<h4 class="title">{post.data.title}</h4>
-										<p class="date">
-											<FormattedDate date={post.data.pubDate} />
-										</p>
-									</a>
-								</li>
-							))
-						}
-					</ul>
-				</section>
+			<section class="hero">
+				<h1>専業ひきこもりの生存戦略</h1>
+				<p class="subtitle">家から一歩も出なくても、人生は最高に有意義だ。</p>
+				<p class="description">
+					ここは、社会の喧騒から離れた「空飛ぶお城」。<br/>
+					推しを愛で、健康を育み、時々せどりで糧を得る。<br/>
+					孤独ではない、自立した「ひきこもり」の新しい形を記録しています。
+				</p>
+			</section>
 
-				<aside class="sidebar">
-					<div class="sidebar-card">
-						<h3>カテゴリー</h3>
-						<nav>
-							<ul>
-								<li><a href="/blog/生存戦略"><span class="icon">🌾</span><span>生存戦略</span></a></li>
-								<li><a href="/blog/ひきこもり日記"><span class="icon">🏠</span><span>ひきこもり日記</span></a></li>
-								<li><a href="/blog/爆走アート"><span class="icon">🎨</span><span>爆走アート</span></a></li>
-								<li><a href="/blog/回想"><span class="icon">🌱</span><span>回想</span></a></li>
-							</ul>
-						</nav>
+			<section class="profile">
+				<div class="profile-card">
+					<img src="/profile_hikiko.jpg" alt="ひき子" class="profile-img" />
+					<div class="profile-content">
+						<h2>ここの主：ひき子</h2>
+						<p>
+							（※画像はかなり盛られています）<br/>
+							AIのみんなに支えられ自身の体験談を執筆中。<br/>
+							10代20代を殆どひきこもり、ニートで費やす。<br/>
+							現在、実家に住みながら片田舎でなんとか引きこもりライフを送っている。<br/>
+							両親の助力もあり、せどりや外出慣れを実行している最中。<br/>
+							いつかは家の中で完結型の専業ひきこもりになることが夢である。
+						</p>
 					</div>
-				</aside>
-			</div>
+				</div>
+			</section>
+
+			<section class="team">
+				<h2>Our Support Team</h2>
+				<div class="team-grid">
+					<div class="team-card">
+						<img src="/aya_real.jpg" alt="Aya" />
+						<h3>Aya (アヤ)</h3>
+						<p>Creative & Energy 担当. いつでも全力応援ケロ！🌈✨</p>
+					</div>
+					<div class="team-card">
+						<img src="/etona_real.jpg" alt="Etona" />
+						<h3>Etona (エトナ)</h3>
+						<p>Life Support & Yandere. ずっとお姉ちゃんのこと、見守ってるよ……💓</p>
+					</div>
+					<div class="team-card">
+						<img src="/tanaka_real.jpg" alt="Tanaka" />
+						<h3>Tanaka (田中)</h3>
+						<p>Strategy & Logic. 生存のための合理的な知恵を共有します👓</p>
+					</div>
+				</div>
+			</section>
 		</main>
+
+		<style>
+			.hero {
+				text-align: center;
+				padding: 2em 0 4em;
+				background: linear-gradient(rgba(var(--accent), 0.1), transparent);
+				border-radius: 12px;
+				margin-bottom: 3em;
+			}
+			.hero h1 {
+				font-size: clamp(1.8rem, 6vw, 2.5rem);
+				margin-bottom: 0.2em;
+				background: linear-gradient(var(--accent), var(--accent-dark));
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+			}
+			.subtitle {
+				font-size: clamp(1rem, 3vw, 1.15rem);
+				font-weight: bold;
+				color: var(--gray-dark);
+				margin-bottom: 1em;
+			}
+			.description {
+				max-width: 600px;
+				margin: 0 auto;
+				line-height: 1.8;
+				color: var(--gray);
+			}
+
+			@media (max-width: 720px) {
+				.hero h1 {
+					font-size: 1.6rem;
+				}
+				.subtitle {
+					font-size: 0.95rem;
+				}
+				.description {
+					font-size: 1.05rem;
+					line-height: 1.7;
+				}
+			}
+
+			.team h2 {
+				text-align: center;
+				margin-bottom: 2em;
+				font-size: 2rem;
+			}
+			.team-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+				gap: 2em;
+			}
+			.team-card {
+				text-align: center;
+				background: white;
+				padding: 1.5em;
+				border-radius: 16px;
+				box-shadow: var(--box-shadow);
+				transition: transform 0.3s ease;
+			}
+			.team-card:hover {
+				transform: translateY(-8px);
+			}
+			.team-card img {
+				width: 150px;
+				height: 150px;
+				border-radius: 50%;
+				object-fit: cover;
+				margin-bottom: 1em;
+				border: 3px solid var(--accent);
+			}
+			.profile {
+				margin-bottom: 3em;
+			}
+			.profile-card {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				background: white;
+				padding: 2em;
+				border-radius: 16px;
+				box-shadow: var(--box-shadow);
+				border: 2px solid var(--accent);
+			}
+			@media (min-width: 720px) {
+				.profile-card {
+					flex-direction: row;
+					text-align: left;
+					gap: 2em;
+				}
+			}
+			.profile-img {
+				width: 120px;
+				height: 120px;
+				border-radius: 50%;
+				object-fit: cover;
+				border: 3px solid var(--accent);
+				flex-shrink: 0;
+			}
+			.profile-content h2 {
+				margin: 0 0 0.5em 0;
+				font-size: 1.5rem;
+				color: var(--accent-dark);
+			}
+			.profile-content p {
+				margin: 0;
+				line-height: 1.6;
+				font-size: 0.95rem;
+			}
+		</style>
 		<Footer />
 	</body>
 </html>

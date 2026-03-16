@@ -179,3 +179,106 @@ hr {
 	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
 	white-space: nowrap;
 }
+
+/* ========================================================================= */
+/* --- チーム「要塞」スペシャルブログデザイン (RocketNews Style) --- */
+/* ========================================================================= */
+
+/* H2: あやのエネルギッシュ・オレンジ！ */
+.prose h2 {
+	background-color: #FF7A00;
+	color: white;
+	padding: 0.8rem 1.2rem;
+	border-radius: 8px;
+	font-size: 1.8rem;
+	margin-top: 3rem;
+	margin-bottom: 1.5rem;
+	box-shadow: 0 4px 6px rgba(255, 122, 0, 0.2);
+	letter-spacing: 0.05em;
+}
+
+/* H3: エトナの癒しピンク ＆ 田中の冷静ネイビー！ */
+.prose h3 {
+	background-color: #FFF5F0;
+	color: #2C3E50;
+	padding: 0.6rem 1.2rem;
+	border-left: 6px solid #FF7A00; /* あやのオレンジライン */
+	font-size: 1.4rem;
+	margin-top: 2.5rem;
+	margin-bottom: 1rem;
+	border-radius: 0 8px 8px 0;
+	font-weight: bold;
+}
+
+/* ロケットニュース風の「余白たっぷり」行間・段落 */
+.prose p {
+	line-height: 1.9;
+	margin-bottom: 2rem; /* 写真や次の文章までの「間（も）」を演出 */
+	font-size: 1.1rem;
+}
+
+/* 写真も間を持たせてドカンと見せる！ */
+.prose img {
+	margin-top: 2.5rem;
+	margin-bottom: 2.5rem;
+	border-radius: 12px;
+	box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+
+/* ========================================================================= */
+/* --- 目次（TOC）パネルのスタイル --- */
+/* ========================================================================= */
+.toc-panel {
+	position: sticky;
+	top: 2rem;
+	background: white;
+	padding: 1.5rem;
+	border-radius: 12px;
+	box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+	max-height: calc(100vh - 4rem);
+	overflow-y: auto;
+}
+
+.toc-title {
+	background: #FF7A00; /* あやオレンジ */
+	color: white;
+	padding: 0.6rem;
+	text-align: center;
+	font-weight: bold;
+	border-radius: 8px;
+	margin-bottom: 1.2rem;
+	font-size: 1.1rem;
+}
+
+.toc-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.toc-list li {
+	margin-bottom: 0.6rem;
+}
+
+.toc-list a {
+	text-decoration: none;
+	color: #2C3E50;
+	font-size: 0.95rem;
+	display: block;
+	padding: 0.3rem 0;
+	transition: color 0.2s;
+	border-bottom: 1px dotted #e0e0e0;
+}
+
+.toc-list a:hover {
+	color: #FF7A00;
+}
+
+/* H3の目次は少し右にずらす */
+.toc-h3 {
+	padding-left: 1.2rem;
+}
+.toc-h3 a {
+	font-size: 0.85rem;
+	color: var(--gray);
+}

@@ -160,6 +160,11 @@ hr {
 	main {
 		padding: 1em;
 	}
+
+	h1 {
+		font-size: 1.6rem;
+		line-height: 1.4;
+	}
 }
 
 .sr-only {

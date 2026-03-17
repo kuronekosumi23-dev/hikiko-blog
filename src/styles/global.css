@@ -419,15 +419,18 @@ hr {
 }
 
 .related-card-title {
-	font-size: 0.95rem;
-	line-height: 1.5;
+	font-size: 0.9rem; /* 少し小さくして視認性アップ */
+	line-height: 1.4;
 	font-weight: bold;
 	color: #333;
-	margin-bottom: 1rem;
+	margin-bottom: 0.5rem;
+	padding: 0 !important; /* グローバルなh3のパディングを強制リセット */
+	background: none !important; /* 背景を消す */
+	border: none !important; /* オレンジのボーダーを消す */
 	display: -webkit-box;
-	-webkit-line-clamp: 2;
+	-webkit-line-clamp: 3; /* 3行まで表示して内容を分かりやすく */
 	-webkit-box-orient: vertical;
-	line-clamp: 2;
+	line-clamp: 3;
 	overflow: hidden;
 }
 

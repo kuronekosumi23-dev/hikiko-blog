@@ -427,11 +427,11 @@ hr {
 	padding: 0 !important; /* グローバルなh3のパディングを強制リセット */
 	background: none !important; /* 背景を消す */
 	border: none !important; /* オレンジのボーダーを消す */
-	display: -webkit-box;
-	-webkit-line-clamp: 3; /* 3行まで表示して内容を分かりやすく */
-	-webkit-box-orient: vertical;
-	line-clamp: 3;
-	overflow: hidden;
+	display: block; /* 全文表示のためブロック要素に戻す */
+	margin-bottom: 0.5rem;
+	padding: 0 !important;
+	background: none !important;
+	border: none !important;
 }
 
 .related-card-date {

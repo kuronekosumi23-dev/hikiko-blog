@@ -123,6 +123,20 @@ const { title, description, pubDate, updatedDate, heroImage, category, headings 
 							{category && <div class="category-badge">{category}</div>}
 							<h1>{title}</h1>
 							<hr />
+							
+							{/* モバイル専用目次（タイトルの下に表示） */}
+							{headings && headings.length > 0 && (
+								<nav class="mobile-toc">
+									<div class="toc-title">ここから飛べるケロ！🚀</div>
+									<ul class="toc-list">
+										{headings.map((heading) => (
+											<li class={`toc-h${heading.depth}`}>
+												<a href={`#${heading.slug}`}>{heading.text}</a>
+											</li>
+										))}
+									</ul>
+								</nav>
+							)}
 						</div>
 						<slot />
 					</div>

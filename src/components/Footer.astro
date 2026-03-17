@@ -3,15 +3,11 @@ const today = new Date();
 ---
 
 <footer>
-	<div class="footer-links">
-		<a href="/">ホーム</a>
-		<a href="/blog">ブログ</a>
-		<a href="/about">About</a>
-		<a href="/privacy">プライバシーポリシー</a>
-		<a href="/contact">お問い合わせ</a>
-	</div>
-	<div class="copyright">
-		&copy; {today.getFullYear()} ひき子要塞. All rights reserved.
+	<div class="footer-content">
+		&copy; {today.getFullYear()} 専業ひきこもりの生存戦略. All rights reserved.
+		<div class="footer-links">
+			<a href="/sitemap-0.xml">Sitemap</a>
+		</div>
 	</div>
 </footer>
 <style>
@@ -22,22 +18,27 @@ const today = new Date();
 		text-align: center;
 	}
 	.footer-links {
-		margin-bottom: 1.5em;
-		display: flex;
-		justify-content: center;
-		gap: 1.5em;
-		flex-wrap: wrap;
+		margin-top: 0.5em;
+		font-size: 0.8rem;
 	}
 	.footer-links a {
+		color: rgb(var(--gray));
 		text-decoration: none;
-		color: rgb(var(--gray-dark));
-		font-weight: bold;
-		font-size: 0.9rem;
 	}
 	.footer-links a:hover {
-		color: var(--accent);
+		text-decoration: underline;
 	}
-	.copyright {
-		margin-bottom: 1em;
+	.social-links {
+		display: flex;
+		justify-content: center;
+		gap: 1em;
+		margin-top: 1em;
+	}
+	.social-links a {
+		text-decoration: none;
+		color: rgb(var(--gray));
+	}
+	.social-links a:hover {
+		color: rgb(var(--gray-dark));
 	}
 </style>

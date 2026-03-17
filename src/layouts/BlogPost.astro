@@ -1,6 +1,6 @@
----
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
@@ -9,6 +9,23 @@ import Header from '../components/Header.astro';
 type Props = CollectionEntry<'blog'>['data'] & { headings?: any[] };
 
 const { title, description, pubDate, updatedDate, heroImage, category, headings } = Astro.props;
+
+// 関連記事の取得 (同じカテゴリー または 最新記事から現在の記事を除いた3件)
+const allPosts = await getCollection('blog');
+const relatedPosts = allPosts
+	.filter((post) => post.data.title !== title) // タイトルで除外
+	.filter((post) => !category || post.data.category === category) // 同カテゴリー優先
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 3);
+
+// カテゴリーが一致するものが3件に満たない場合、他のカテゴリーからも補充
+if (relatedPosts.length < 3) {
+	const morePosts = allPosts
+		.filter((post) => post.data.title !== title && !relatedPosts.includes(post))
+		.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+		.slice(0, 3 - relatedPosts.length);
+	relatedPosts.push(...morePosts);
+}
 ---
 
 <html lang="ja">
@@ -139,6 +156,32 @@ const { title, description, pubDate, updatedDate, heroImage, category, headings 
 							)}
 						</div>
 						<slot />
+
+						{/* 関連記事セクション (Tetsuya-san's recommendation) */}
+						{relatedPosts.length > 0 && (
+							<section class="related-posts-section">
+								<div class="related-title-wrapper">
+									<div class="related-icon">📄</div>
+									<h2 class="related-title">Related Posts</h2>
+								</div>
+								<div class="related-posts-grid">
+									{relatedPosts.map((post) => (
+										<a href={`/blog/${post.id}/`} class="related-card">
+											{post.data.heroImage && (
+												<img src={typeof post.data.heroImage === 'string' ? post.data.heroImage : post.data.heroImage.src} alt="" class="related-card-img" />
+											)}
+											<div class="related-card-body">
+												{post.data.category && <span class="related-card-category">{post.data.category}</span>}
+												<h3 class="related-card-title">{post.data.title}</h3>
+												<p class="related-card-date">
+													<FormattedDate date={post.data.pubDate} />
+												</p>
+											</div>
+										</a>
+									))}
+								</div>
+							</section>
+						)}
 					</div>
 				</article>
 

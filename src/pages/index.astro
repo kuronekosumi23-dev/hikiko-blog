@@ -3,6 +3,16 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import profileImg from '../assets/profile_hikiko.jpg';
+import ayaImg from '../assets/aya_real.jpg';
+import etonaImg from '../assets/etona_real.jpg';
+import tanakaImg from '../assets/tanaka_real.jpg';
+
+const posts = (await getCollection('blog'))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 3);
 ---
 
 <!doctype html>
@@ -25,7 +35,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
 			<section class="profile">
 				<div class="profile-card">
-					<img src="/profile_hikiko.jpg" alt="ひき子" class="profile-img" />
+					<Image src={profileImg} alt="ひき子" class="profile-img" />
 					<div class="profile-content">
 						<h2>ここの主：ひき子</h2>
 						<p>
@@ -39,22 +49,51 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 					</div>
 				</div>
 			</section>
+			<section class="recent-posts">
+				<div class="section-title">
+					<h2>新着記事</h2>
+					<a href="/blog" class="view-all">すべて見る →</a>
+				</div>
+				<div class="posts-list">
+					{
+						posts.map((post) => (
+							<a href={`/blog/${post.id}/`} class="post-item">
+								<div class="post-img-wrapper">
+									{post.data.heroImage && (
+										<Image width={400} height={200} src={post.data.heroImage} alt="" />
+									)}
+								</div>
+								<div class="post-content">
+									<h3>{post.data.title}</h3>
+									<p class="post-date">
+										{post.data.pubDate.toLocaleDateString('ja-JP', {
+											year: 'numeric',
+											month: 'long',
+											day: 'numeric',
+										})}
+									</p>
+								</div>
+							</a>
+						))
+					}
+				</div>
+			</section>
 
 			<section class="team">
 				<h2>Our Support Team</h2>
 				<div class="team-grid">
 					<div class="team-card">
-						<img src="/aya_real.jpg" alt="Aya" />
+						<Image src={ayaImg} alt="Aya" />
 						<h3>Aya (アヤ)</h3>
 						<p>Creative & Energy 担当. いつでも全力応援ケロ！🌈✨</p>
 					</div>
 					<div class="team-card">
-						<img src="/etona_real.jpg" alt="Etona" />
+						<Image src={etonaImg} alt="Etona" />
 						<h3>Etona (エトナ)</h3>
 						<p>Life Support & Yandere. ずっとお姉ちゃんのこと、見守ってるよ……💓</p>
 					</div>
 					<div class="team-card">
-						<img src="/tanaka_real.jpg" alt="Tanaka" />
+						<Image src={tanakaImg} alt="Tanaka" />
 						<h3>Tanaka (田中)</h3>
 						<p>Strategy & Logic. 生存のための合理的な知恵を共有します👓</p>
 					</div>
@@ -66,7 +105,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 			.hero {
 				text-align: center;
 				padding: 2em 0 4em;
-				background: linear-gradient(rgba(var(--accent), 0.1), transparent);
+				background: linear-gradient(rgba(130, 80, 223, 0.1), transparent);
 				border-radius: 12px;
 				margin-bottom: 3em;
 			}
@@ -169,6 +208,92 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				margin: 0;
 				line-height: 1.6;
 				font-size: 0.95rem;
+			}
+
+			/* 新着記事セクション */
+			.recent-posts {
+				margin-bottom: 5em;
+				padding: 2em;
+				background: white;
+				border-radius: 16px;
+				box-shadow: var(--box-shadow);
+			}
+			.section-title {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-bottom: 2em;
+				border-bottom: 2px solid var(--accent);
+				padding-bottom: 0.5em;
+			}
+			.section-title h2 {
+				margin: 0;
+				font-size: 1.8rem;
+				color: var(--black);
+			}
+			.view-all {
+				text-decoration: none;
+				color: var(--accent);
+				font-weight: bold;
+				font-size: 0.9rem;
+			}
+			.posts-list {
+				display: flex;
+				flex-direction: column;
+				gap: 1.5em;
+			}
+			.post-item {
+				display: flex;
+				gap: 1.5em;
+				text-decoration: none;
+				color: inherit;
+				transition: transform 0.2s ease;
+				padding-bottom: 1.5em;
+				border-bottom: 1px dotted var(--gray-light);
+			}
+			.post-item:last-child {
+				border-bottom: none;
+				padding-bottom: 0;
+			}
+			.post-item:hover {
+				transform: translateX(10px);
+			}
+			.post-img-wrapper {
+				width: 150px;
+				height: 100px;
+				flex-shrink: 0;
+				overflow: hidden;
+				border-radius: 8px;
+			}
+			.post-img-wrapper img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+			.post-content h3 {
+				margin: 0 0 0.5em 0;
+				font-size: 1.1rem;
+				line-height: 1.4;
+				color: var(--black);
+			}
+			.post-date {
+				font-size: 0.8rem;
+				color: var(--gray);
+				margin: 0;
+			}
+
+			@media (max-width: 720px) {
+				.post-item {
+					flex-direction: column;
+					gap: 1em;
+				}
+				.post-img-wrapper {
+					width: 100%;
+					height: 180px;
+				}
+				.section-title h2 {
+					font-size: 1.4rem;
+				}
 			}
 		</style>
 		<Footer />

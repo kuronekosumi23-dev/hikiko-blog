@@ -13,36 +13,14 @@ const posts = (await getCollection('blog')).sort(
 ---
 
 <!doctype html>
-<html lang="ja">
+<html lang="en">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 		<style>
-			/* メイン全体の幅を少し広げてサイドバーのスペースを作る */
 			main {
-				width: 100%;
-				max-width: 1200px;
-				margin: 0 auto;
-				padding: 3em 1em;
-				box-sizing: border-box;
-				overflow-x: hidden;
+				width: 960px;
 			}
-
-			/* 横並びのレイアウト設定 */
-			.blog-layout {
-				display: grid;
-				grid-template-columns: 1fr;
-				gap: 3rem;
-				overflow: hidden; /* はみ出し防止 */
-			}
-
-			@media (min-width: 900px) {
-				.blog-layout {
-					grid-template-columns: 2fr 1fr; /* 左2：右1の比率 */
-				}
-			}
-
-			/* 記事リスト */
-			.posts-area ul {
+			ul {
 				display: flex;
 				flex-wrap: wrap;
 				gap: 2rem;
@@ -50,91 +28,60 @@ const posts = (await getCollection('blog')).sort(
 				margin: 0;
 				padding: 0;
 			}
-			.posts-area ul li {
-				width: 100%;
-				box-sizing: border-box;
+			ul li {
+				width: calc(50% - 1rem);
 			}
-			@media (min-width: 600px) {
-				.posts-area ul li {
-					width: calc(50% - 1rem);
-				}
-			}
-			.posts-area ul li * {
+			ul li * {
 				text-decoration: none;
 				transition: 0.2s ease;
 			}
-			.posts-area ul li:first-child {
+			ul li:first-child {
 				width: 100%;
 				margin-bottom: 1rem;
 				text-align: center;
 			}
-			.posts-area ul li img {
-				display: block;
-				max-width: 100% !important;
-				height: auto !important;
-				margin: 0 auto 0.5rem;
-				border-radius: 12px;
-				object-fit: cover;
+			ul li:first-child img {
+				width: 100%;
 			}
-			.posts-area .title {
+			ul li:first-child .title {
+				font-size: 2.369rem;
+			}
+			ul li img {
+				margin-bottom: 0.5rem;
+				border-radius: 12px;
+			}
+			ul li a {
+				display: block;
+			}
+			.title {
 				margin: 0;
 				color: rgb(var(--black));
-				line-height: 1.2;
-				font-size: 1.25rem;
-				word-wrap: break-word;
-				overflow-wrap: break-word;
+				line-height: 1;
 			}
-
-			/* サイドバー */
-			.sidebar-card {
-				background: #fdfdfd;
-				padding: 1.5rem;
-				border-radius: 16px;
-				box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-				border: 1px solid #eee;
-				position: sticky;
-				top: 2rem;
-			}
-			.sidebar h3 {
-				font-size: 1.2rem;
-				border-bottom: 2px solid var(--accent);
-				margin-bottom: 1rem;
-				padding-bottom: 0.5rem;
-			}
-			.sidebar ul {
-				list-style: none;
-				padding: 0;
+			.date {
 				margin: 0;
+				color: rgb(var(--gray));
 			}
-			.sidebar li {
-				margin-bottom: 1rem;
+			ul li a:hover h4,
+			ul li a:hover .date {
+				color: rgb(var(--accent));
 			}
-			.sidebar a {
-				text-decoration: none;
-				color: var(--gray-dark);
-				font-weight: 500;
-				display: flex;
-				align-items: center;
-				gap: 0.5rem;
-				transition: color 0.2s;
+			ul a:hover img {
+				box-shadow: var(--box-shadow);
 			}
-			.sidebar a span.icon {
-				display: inline-flex;
-				align-items: center;
-				justify-content: center;
-				width: 1.5em; /* アイコンの幅を固定して文字の位置を揃える */
-			}
-			.sidebar a:hover {
-				color: var(--accent);
-			}
-
-			@media (max-width: 899px) {
-				.sidebar {
-					order: -1;
-					margin-bottom: 2rem;
+			@media (max-width: 720px) {
+				ul {
+					gap: 0.5em;
 				}
-				.posts-area ul li:first-child .title {
-					font-size: 1.5rem;
+				ul li {
+					width: 100%;
+					text-align: center;
+				}
+				ul li:first-child {
+					margin-bottom: 0;
+				}
+				ul li:first-child .title {
+					font-size: 1.563em;
 				}
 			}
 		</style>
@@ -142,46 +89,76 @@ const posts = (await getCollection('blog')).sort(
 	<body>
 		<Header />
 		<main>
-			<div class="blog-layout">
-				<section class="posts-area">
-					<ul>
-						{
-							posts.map((post) => (
-								<li>
-									<a href={`/blog/${post.id}/`}>
-										{post.data.heroImage && (
-											typeof post.data.heroImage === 'string' ? (
-												<img width={720} height={360} src={post.data.heroImage} alt="" />
-											) : (
-												<Image width={720} height={360} src={post.data.heroImage} alt="" />
-											)
-										)}
-										<h4 class="title">{post.data.title}</h4>
-										<p class="date">
-											<FormattedDate date={post.data.pubDate} />
-										</p>
-									</a>
-								</li>
-							))
-						}
-					</ul>
-				</section>
-
-				<aside class="sidebar">
-					<div class="sidebar-card">
-						<h3>カテゴリー</h3>
-						<nav>
-							<ul>
-								<li><a href="/blog/生存戦略"><span class="icon">🌾</span><span>生存戦略</span></a></li>
-								<li><a href="/blog/ひきこもり日記"><span class="icon">🏠</span><span>ひきこもり日記</span></a></li>
-								<li><a href="/blog/爆走アート"><span class="icon">🎨</span><span>爆走アート</span></a></li>
-								<li><a href="/blog/回想"><span class="icon">🌱</span><span>回想</span></a></li>
-							</ul>
-						</nav>
-					</div>
-				</aside>
+			<div class="search-status" id="searchStatus" style="display: none;">
+				<p><span id="searchQuery"></span> の検索結果: <span id="resultCount"></span>件</p>
+				<a href="/blog" class="clear-search">検索をクリア</a>
 			</div>
+			<section>
+				<ul id="postsList">
+					{
+						posts.map((post) => (
+							<li>
+								<a href={`/blog/${post.id}/`}>
+									{post.data.heroImage && (
+										<Image width={720} height={360} src={post.data.heroImage} alt="" />
+									)}
+									<h4 class="title">{post.data.title}</h4>
+									<p class="date">
+										<FormattedDate date={post.data.pubDate} />
+									</p>
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</section>
 		</main>
+		<script>
+			// 検索フィルタリングロジック
+			const urlParams = new URLSearchParams(window.location.search);
+			const query = urlParams.get('q')?.toLowerCase();
+			const postsList = document.getElementById('postsList');
+			const searchStatus = document.getElementById('searchStatus');
+			const searchQueryDisplay = document.getElementById('searchQuery');
+			const resultCountDisplay = document.getElementById('resultCount');
+
+			if (query && postsList && searchStatus) {
+				const posts = postsList.querySelectorAll('li');
+				let count = 0;
+
+				posts.forEach((post) => {
+					const title = (post as HTMLElement).querySelector('.title')?.textContent?.toLowerCase() || '';
+					if (title.includes(query)) {
+						(post as HTMLElement).style.display = 'block';
+						count++;
+					} else {
+						(post as HTMLElement).style.display = 'none';
+					}
+				});
+
+				searchStatus.style.display = 'flex';
+				if (searchQueryDisplay) searchQueryDisplay.textContent = `「${query}」`;
+				if (resultCountDisplay) resultCountDisplay.textContent = count.toString();
+			}
+		</script>
+
+		<style>
+			.search-status {
+				background: var(--gray-light);
+				padding: 1rem;
+				border-radius: 8px;
+				margin-bottom: 2rem;
+				display: none; /* JSで制御 */
+				justify-content: space-between;
+				align-items: center;
+			}
+			.search-status p { margin: 0; font-weight: bold; }
+			.clear-search {
+				font-size: 0.8rem;
+				color: var(--accent-dark);
+				text-decoration: underline;
+			}
+		</style>
 		<Footer />
 	</body>
 </html>

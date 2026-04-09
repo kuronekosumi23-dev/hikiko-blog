@@ -5,52 +5,169 @@ import HeaderLink from './HeaderLink.astro';
 
 <header>
 	<nav>
-		<h2><a href="/">{SITE_TITLE}</a></h2>
-		<div class="internal-links">
-			<HeaderLink href="/">Home</HeaderLink>
-			<HeaderLink href="/blog">Blog</HeaderLink>
-			<HeaderLink href="/about">About</HeaderLink>
+		<div class="header-top">
+			<h2 class="logo"><a href="/">{SITE_TITLE}</a></h2>
+			<button class="menu-toggle" aria-label="メニューを開く">
+				<span class="hamburger"></span>
+			</button>
+		</div>
+
+		<div class="header-main">
+			<form action="/blog" method="GET" class="search-form">
+				<input type="text" name="q" placeholder="気になるキーワードを入力" aria-label="ブログ内検索" />
+				<button type="submit" aria-label="検索">
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+				</button>
+			</form>
+			<div class="internal-links" id="menu">
+				<HeaderLink href="/">Home</HeaderLink>
+				<HeaderLink href="/blog">Blog</HeaderLink>
+				<HeaderLink href="/about">About</HeaderLink>
+			</div>
 		</div>
 	</nav>
 </header>
+
+<script>
+	const menuToggle = document.querySelector('.menu-toggle');
+	const headerMain = document.querySelector('.header-main');
+
+	menuToggle?.addEventListener('click', () => {
+		headerMain?.classList.toggle('is-open');
+		menuToggle?.classList.toggle('is-active');
+	});
+</script>
+
 <style>
 	header {
 		margin: 0;
-		padding: 0 1em;
+		padding: 0;
 		background: white;
-		box-shadow: 0 2px 8px rgba(var(--black), 5%);
-	}
-	h2 {
-		margin: 0;
-		font-size: 1em;
-	}
-
-	h2 a,
-	h2 a.active {
-		text-decoration: none;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+		position: sticky;
+		top: 0;
+		z-index: 1000;
 	}
 	nav {
+		max-width: 960px;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		padding: 0.5rem 1rem;
+	}
+	.header-top {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0.5rem 0;
+	}
+	.logo {
+		margin: 0;
+		font-size: 1.25rem;
+	}
+	.logo a {
+		color: var(--accent-dark);
+		text-decoration: none;
+		font-weight: 800;
+	}
+	.header-main {
+		width: 100%;
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
+		gap: 2rem;
+		transition: all 0.3s ease;
 	}
-	nav a {
-		padding: 1em 0.5em;
-		color: var(--black);
-		border-bottom: 4px solid transparent;
-		text-decoration: none;
-	}
-	nav a.active {
-		text-decoration: none;
-		border-bottom-color: var(--accent);
-	}
-	.social-links,
-	.social-links a {
+
+	/* 検索フォーム */
+	.search-form {
+		flex-grow: 1;
 		display: flex;
+		align-items: center;
+		background: var(--gray-light);
+		border-radius: 25px;
+		padding: 0.2rem 1rem;
+		border: 2px solid transparent;
+		transition: border-color 0.2s;
 	}
+	.search-form:focus-within {
+		border-color: var(--accent);
+		background: white;
+	}
+	.search-form input {
+		width: 100%;
+		border: none;
+		background: transparent;
+		padding: 0.5rem;
+		font-size: 0.9rem;
+		outline: none;
+	}
+	.search-form button {
+		background: transparent;
+		border: none;
+		cursor: pointer;
+		color: var(--gray);
+		display: flex;
+		align-items: center;
+	}
+
+	.internal-links {
+		display: flex;
+		gap: 1rem;
+	}
+
+	/* モバイル対応：ハンバーガーボタン */
+	.menu-toggle {
+		display: none;
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 10px;
+	}
+	.hamburger {
+		display: block;
+		width: 24px;
+		height: 2px;
+		background: var(--accent-dark);
+		position: relative;
+		transition: background 0.3s;
+	}
+	.hamburger::before,
+	.hamburger::after {
+		content: '';
+		position: absolute;
+		width: 24px;
+		height: 2px;
+		background: var(--accent-dark);
+		transition: transform 0.3s;
+	}
+	.hamburger::before { top: -8px; }
+	.hamburger::after { bottom: -8px; }
+
+	.menu-toggle.is-active .hamburger { background: transparent; }
+	.menu-toggle.is-active .hamburger::before { transform: rotate(45deg) translate(5px, 5px); }
+	.menu-toggle.is-active .hamburger::after { transform: rotate(-45deg) translate(6px, -6px); }
+
 	@media (max-width: 720px) {
-		.social-links {
+		.menu-toggle {
+			display: block;
+		}
+		.header-main {
 			display: none;
+			flex-direction: column;
+			gap: 1rem;
+			padding: 1rem 0;
+		}
+		.header-main.is-open {
+			display: flex;
+		}
+		.internal-links {
+			flex-direction: column;
+			width: 100%;
+			text-align: center;
+		}
+		.search-form {
+			width: 100%;
 		}
 	}
 </style>

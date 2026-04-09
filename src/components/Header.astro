@@ -70,6 +70,8 @@ import HeaderLink from './HeaderLink.astro';
 		color: var(--accent-dark);
 		text-decoration: none;
 		font-weight: 800;
+		display: block;
+		line-height: 1.2;
 	}
 	.header-main {
 		width: 100%;
@@ -149,14 +151,26 @@ import HeaderLink from './HeaderLink.astro';
 	.menu-toggle.is-active .hamburger::after { transform: rotate(-45deg) translate(6px, -6px); }
 
 	@media (max-width: 720px) {
+		.header-top {
+			gap: 1rem;
+			align-items: flex-start; /* 折り返しを考慮して上揃え */
+		}
+		.logo {
+			font-size: 1.1rem; /* 少し小さくしてバランス調整 */
+			flex: 1;
+		}
 		.menu-toggle {
 			display: block;
+			flex-shrink: 0;
+			margin-top: -4px; /* アイコンを文字の1行目の中央に寄せる微調整 */
 		}
 		.header-main {
 			display: none;
 			flex-direction: column;
-			gap: 1rem;
+			gap: 1.5rem;
 			padding: 1rem 0;
+			border-top: 1px solid var(--gray-light);
+			margin-top: 0.5rem;
 		}
 		.header-main.is-open {
 			display: flex;
@@ -165,6 +179,12 @@ import HeaderLink from './HeaderLink.astro';
 			flex-direction: column;
 			width: 100%;
 			text-align: center;
+			gap: 0;
+		}
+		.internal-links a {
+			padding: 1rem;
+			border-bottom: 1px solid var(--gray-light);
+			width: 100%;
 		}
 		.search-form {
 			width: 100%;

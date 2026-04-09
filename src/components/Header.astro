@@ -2,7 +2,6 @@
 import { SITE_TITLE } from '../consts';
 import HeaderLink from './HeaderLink.astro';
 
-// タイトルをメインとサブに分割（全角コロンで分割）
 const titles = SITE_TITLE.split('：');
 const mainTitle = titles[0];
 const subTitle = titles.length > 1 ? '：' + titles[1] : '';
@@ -68,9 +67,9 @@ const subTitle = titles.length > 1 ? '：' + titles[1] : '';
 	.header-top {
 		width: 100%;
 		display: flex;
-		flex-direction: row; /* スマホでも横並びを強制 */
+		flex-direction: row;
 		justify-content: space-between;
-		align-items: center; /* 中央揃えでバランスを取る */
+		align-items: center;
 		padding: 0.5rem 0;
 		gap: 0.5rem;
 	}
@@ -90,7 +89,7 @@ const subTitle = titles.length > 1 ? '：' + titles[1] : '';
 		font-size: 0.9rem;
 		font-weight: 400;
 		color: var(--gray);
-		display: inline; /* PCでは横に並べる */
+		display: inline;
 	}
 	.header-main {
 		width: 100%;
@@ -99,8 +98,6 @@ const subTitle = titles.length > 1 ? '：' + titles[1] : '';
 		gap: 2rem;
 		transition: all 0.3s ease;
 	}
-
-	/* 検索フォーム */
 	.search-form {
 		flex-grow: 1;
 		display: flex;
@@ -131,13 +128,10 @@ const subTitle = titles.length > 1 ? '：' + titles[1] : '';
 		display: flex;
 		align-items: center;
 	}
-
 	.internal-links {
 		display: flex;
 		gap: 1rem;
 	}
-
-	/* モバイル対応：ハンバーガーボタン */
 	.menu-toggle {
 		display: none;
 		background: none;
@@ -165,7 +159,6 @@ const subTitle = titles.length > 1 ? '：' + titles[1] : '';
 	}
 	.hamburger::before { top: -8px; }
 	.hamburger::after { bottom: -8px; }
-
 	.menu-toggle.is-active .hamburger { background: transparent; }
 	.menu-toggle.is-active .hamburger::before { transform: rotate(45deg) translate(5px, 5px); }
 	.menu-toggle.is-active .hamburger::after { transform: rotate(-45deg) translate(6px, -6px); }
@@ -175,10 +168,10 @@ const subTitle = titles.length > 1 ? '：' + titles[1] : '';
 			display: block;
 		}
 		.logo {
-			font-size: 1.1rem; /* スマホでも読みやすいサイズに固定 */
+			font-size: 1.1rem;
 		}
 		.sub-title {
-			display: none; /* スマホではサブタイトル（：以降）を非表示にする */
+			display: none;
 		}
 		.header-main {
 			display: none;

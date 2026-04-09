@@ -64,6 +64,8 @@ const subTitle = titles.length > 1 ? '：' + titles[1] : '';
 		flex-direction: column;
 		padding: 0.5rem 1rem;
 	}
+
+	/* 親要素：ロゴとボタンを縦方向の中央で揃える */
 	.header-top {
 		width: 100%;
 		display: flex;
@@ -71,17 +73,18 @@ const subTitle = titles.length > 1 ? '：' + titles[1] : '';
 		justify-content: space-between;
 		align-items: center;
 		padding: 0.5rem 0;
-		gap: 0.5rem;
 	}
+
 	.logo {
 		margin: 0;
-		font-size: 1.25rem;
-		flex: 1;
+		line-height: 1.2;
+		flex-grow: 1;
 	}
 	.logo a {
 		color: var(--accent-dark);
 		text-decoration: none;
 		font-weight: 800;
+		font-size: 1.25rem;
 		display: block;
 		line-height: 1.2;
 	}
@@ -91,6 +94,7 @@ const subTitle = titles.length > 1 ? '：' + titles[1] : '';
 		color: var(--gray);
 		display: inline;
 	}
+
 	.header-main {
 		width: 100%;
 		display: flex;
@@ -98,6 +102,8 @@ const subTitle = titles.length > 1 ? '：' + titles[1] : '';
 		gap: 2rem;
 		transition: all 0.3s ease;
 	}
+
+	/* 検索フォーム */
 	.search-form {
 		flex-grow: 1;
 		display: flex;
@@ -128,18 +134,30 @@ const subTitle = titles.length > 1 ? '：' + titles[1] : '';
 		display: flex;
 		align-items: center;
 	}
+
 	.internal-links {
 		display: flex;
 		gap: 1rem;
 	}
+
+	/* ボタン：PCでは完全に非表示 */
 	.menu-toggle {
 		display: none;
 		background: none;
 		border: none;
 		cursor: pointer;
-		padding: 10px;
-		flex-shrink: 0;
+		/* 押しやすいサイズを確保しつつ余白をリセット */
+		width: 44px;
+		height: 44px;
+		padding: 0;
+		/* ボタン内の三本線を真ん中に配置 */
+		align-items: center;
+		justify-content: center;
+		/* 右端にピッタリ寄せる */
+		margin-right: -10px;
 	}
+
+	/* 三本線 */
 	.hamburger {
 		display: block;
 		width: 24px;
@@ -159,19 +177,24 @@ const subTitle = titles.length > 1 ? '：' + titles[1] : '';
 	}
 	.hamburger::before { top: -8px; }
 	.hamburger::after { bottom: -8px; }
+
 	.menu-toggle.is-active .hamburger { background: transparent; }
 	.menu-toggle.is-active .hamburger::before { transform: rotate(45deg) translate(5px, 5px); }
 	.menu-toggle.is-active .hamburger::after { transform: rotate(-45deg) translate(6px, -6px); }
 
 	@media (max-width: 720px) {
-		.menu-toggle {
-			display: block;
+		nav {
+			padding: 0.5rem 0.75rem;
 		}
-		.logo {
+		/* モバイルでは flex で表示（block ではなく flex！これが大事！） */
+		.menu-toggle {
+			display: flex;
+		}
+		.logo a {
 			font-size: 1.1rem;
 		}
 		.sub-title {
-			display: none;
+			display: none; /* サブタイトルを非表示にしてロゴを1行に */
 		}
 		.header-main {
 			display: none;

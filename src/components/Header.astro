@@ -2,7 +2,6 @@
 import { SITE_TITLE } from '../consts';
 import HeaderLink from './HeaderLink.astro';
 
-// タイトルを「メイン」と「サブ」に分割（全角コロン：で分割）
 const titles = SITE_TITLE.split('：');
 const mainTitle = titles[0];
 const subTitle = titles.length > 1 ? '：' + titles[1] : '';
@@ -66,13 +65,13 @@ const subTitle = titles.length > 1 ? '：' + titles[1] : '';
 		padding: 0.5rem 1rem;
 	}
 
-	/* ロゴとボタンの親要素：縦方向の中央で完璧に揃える */
+	/* 親要素：ロゴとボタンを縦方向の中央で揃える */
 	.header-top {
 		width: 100%;
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
-		align-items: center; /* 上下中央揃え */
+		align-items: center;
 		padding: 0.5rem 0;
 	}
 
@@ -115,6 +114,10 @@ const subTitle = titles.length > 1 ? '：' + titles[1] : '';
 		border: 2px solid transparent;
 		transition: border-color 0.2s;
 	}
+	.search-form:focus-within {
+		border-color: var(--accent);
+		background: white;
+	}
 	.search-form input {
 		width: 100%;
 		border: none;
@@ -137,20 +140,24 @@ const subTitle = titles.length > 1 ? '：' + titles[1] : '';
 		gap: 1rem;
 	}
 
-	/* メニューボタン：サイズ固定 + 中央寄せ */
+	/* ボタン：PCでは完全に非表示 */
 	.menu-toggle {
-		display: none; /* PCでは隠す */
+		display: none;
 		background: none;
 		border: none;
 		cursor: pointer;
+		/* 押しやすいサイズを確保しつつ余白をリセット */
 		width: 44px;
 		height: 44px;
 		padding: 0;
-		align-items: center; /* 横並び時の中央 */
-		justify-content: center; /* 縦並び時の中央 */
-		margin-right: -10px; /* 右端ピッタリ寄せ */
+		/* ボタン内の三本線を真ん中に配置 */
+		align-items: center;
+		justify-content: center;
+		/* 右端にピッタリ寄せる */
+		margin-right: -10px;
 	}
 
+	/* 三本線 */
 	.hamburger {
 		display: block;
 		width: 24px;
@@ -163,6 +170,7 @@ const subTitle = titles.length > 1 ? '：' + titles[1] : '';
 	.hamburger::after {
 		content: '';
 		position: absolute;
+		left: 0;
 		width: 24px;
 		height: 2px;
 		background: var(--accent-dark);
@@ -172,18 +180,23 @@ const subTitle = titles.length > 1 ? '：' + titles[1] : '';
 	.hamburger::after { bottom: -8px; }
 
 	.menu-toggle.is-active .hamburger { background: transparent; }
-	.menu-toggle.is-active .hamburger::before { transform: rotate(45deg) translate(5px, 5px); }
-	.menu-toggle.is-active .hamburger::after { transform: rotate(-45deg) translate(6px, -6px); }
+	/* translateYで中央（0px）に寄せてから回転させることで、ズレを防ぐ */
+	.menu-toggle.is-active .hamburger::before { transform: translateY(8px) rotate(45deg); }
+	.menu-toggle.is-active .hamburger::after { transform: translateY(-8px) rotate(-45deg); }
 
 	@media (max-width: 720px) {
+		nav {
+			padding: 0.5rem 0.75rem;
+		}
+		/* モバイルでは flex で表示（block ではなく flex！これが大事！） */
 		.menu-toggle {
-			display: flex; /* スマホで表示 */
+			display: flex;
 		}
 		.logo a {
 			font-size: 1.1rem;
 		}
 		.sub-title {
-			display: none; /* スマホではサブタイトルを隠して1行に！ */
+			display: none; /* サブタイトルを非表示にしてロゴを1行に */
 		}
 		.header-main {
 			display: none;
@@ -199,10 +212,14 @@ const subTitle = titles.length > 1 ? '：' + titles[1] : '';
 			flex-direction: column;
 			width: 100%;
 			text-align: center;
+			gap: 0;
 		}
 		.internal-links a {
-			padding: 0.8rem;
+			padding: 1rem;
 			border-bottom: 1px solid var(--gray-light);
+			width: 100%;
+		}
+		.search-form {
 			width: 100%;
 		}
 	}

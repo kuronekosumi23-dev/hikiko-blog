@@ -261,8 +261,14 @@ hr {
 	font-size: 1.1rem;
 }
 
-/* 写真も間を持たせてドカンと見せる！ */
+/* 写真も間を持たせてドカンと見せる！ サイズを美しい比率で統一 */
 .prose img {
+	display: block;
+	width: 100%;
+	max-height: 400px;
+	object-fit: cover; /* 枠に合わせてトリミングし、サイズを統一 */
+	margin-left: auto;
+	margin-right: auto;
 	margin-top: 2.5rem;
 	margin-bottom: 2.5rem;
 	border-radius: 12px;

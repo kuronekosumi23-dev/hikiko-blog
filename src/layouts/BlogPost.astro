@@ -64,15 +64,17 @@ if (relatedPosts.length < 3) {
 
 			.hero-image {
 				width: 100%;
+				background: var(--gray-light); /* 縦長写真を貼った時に左右が寂しくならないように背景色を少し付ける */
+				border-radius: 12px;
+				box-shadow: var(--box-shadow);
 			}
 			.hero-image img {
 				display: block;
 				width: 100%;
-				aspect-ratio: 16 / 9;
-				object-fit: cover;
+				max-height: 500px;
+				object-fit: contain; /* 被写体が絶対に切れないように全体を表示 */
 				margin: 0 auto;
 				border-radius: 12px;
-				box-shadow: var(--box-shadow);
 			}
 			.prose {
 				width: 720px;

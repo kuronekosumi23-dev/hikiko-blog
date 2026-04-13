@@ -261,12 +261,13 @@ hr {
 	font-size: 1.1rem;
 }
 
-/* 写真も間を持たせてドカンと見せる！ サイズを美しい比率で統一 */
+/* 写真のサイズを元の比率のまま綺麗に画面に収める */
 .prose img {
 	display: block;
-	width: 100%;
-	max-height: 400px;
-	object-fit: cover; /* 枠に合わせてトリミングし、サイズを統一 */
+	max-width: 100%;
+	max-height: 600px; /* PCでも巨大になりすぎない防波堤 */
+	width: auto;
+	height: auto;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 2.5rem;

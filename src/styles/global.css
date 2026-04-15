@@ -400,10 +400,14 @@ hr {
 }
 
 .related-card-img {
-	width: 100%;
-	height: 150px;
-	object-fit: cover;
-	border-bottom: 1px solid #eee;
+	width: 100% !important;
+	height: auto !important;
+	aspect-ratio: 16 / 9 !important;
+	object-fit: cover !important;
+	margin: 0 !important; /* .prose img の巨大な余白をリセット */
+	border-radius: 0 !important; /* .prose img の角丸をリセット */
+	box-shadow: none !important; /* .prose img の影をリセット */
+	border-bottom: 1px solid #eee !important;
 }
 
 .related-card-body {

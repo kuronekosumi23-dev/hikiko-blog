@@ -10,6 +10,16 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+
+// カテゴリーごとの記事数をカウント
+const categoryCounts = posts.reduce((acc, post) => {
+	const cat = post.data.category || '未分類';
+	acc[cat] = (acc[cat] || 0) + 1;
+	return acc;
+}, {} as Record<string, number>);
+
+// セレクトボックス用にカテゴリー名を取得してソート
+const categories = Object.keys(categoryCounts).sort();
 ---
 
 <!doctype html>
@@ -97,11 +107,24 @@ const posts = (await getCollection('blog')).sort(
 				<p><span id="searchQuery"></span> の検索結果: <span id="resultCount"></span>件</p>
 				<a href="/blog" class="clear-search">検索をクリア</a>
 			</div>
+
+			<div class="category-filter">
+				<label for="categorySelect" class="category-label">📂 カテゴリー一覧</label>
+				<select id="categorySelect" class="category-select" autocomplete="off">
+					<option value="all">すべての記事</option>
+					{
+						categories.map((cat) => (
+							<option value={cat}>{cat} ({categoryCounts[cat]})</option>
+						))
+					}
+				</select>
+			</div>
+
 			<section>
 				<ul id="postsList">
 					{
 						posts.map((post) => (
-							<li>
+							<li data-category={post.data.category || '未分類'}>
 								<a href={`/blog/${post.id}/`}>
 									{post.data.heroImage && (
 										<Image width={720} height={360} src={post.data.heroImage} alt="" />
@@ -121,21 +144,29 @@ const posts = (await getCollection('blog')).sort(
 			</section>
 		</main>
 		<script>
-			// 検索フィルタリングロジック
+			// 検索およびカテゴリーのフィルタリングロジック
 			const urlParams = new URLSearchParams(window.location.search);
-			const query = urlParams.get('q')?.toLowerCase();
+			const query = urlParams.get('q')?.toLowerCase() || '';
 			const postsList = document.getElementById('postsList');
 			const searchStatus = document.getElementById('searchStatus');
 			const searchQueryDisplay = document.getElementById('searchQuery');
 			const resultCountDisplay = document.getElementById('resultCount');
+			const categorySelect = document.getElementById('categorySelect') as HTMLSelectElement;
 
-			if (query && postsList && searchStatus) {
+			function filterPosts() {
+				if (!postsList) return;
+				const selectedCategory = categorySelect?.value || 'all';
 				const posts = postsList.querySelectorAll('li');
 				let count = 0;
 
 				posts.forEach((post) => {
 					const title = (post as HTMLElement).querySelector('.title')?.textContent?.toLowerCase() || '';
-					if (title.includes(query)) {
+					const category = post.getAttribute('data-category');
+					
+					const matchesSearch = !query || title.includes(query);
+					const matchesCategory = selectedCategory === 'all' || category === selectedCategory;
+
+					if (matchesSearch && matchesCategory) {
 						(post as HTMLElement).style.display = 'block';
 						count++;
 					} else {
@@ -143,13 +174,57 @@ const posts = (await getCollection('blog')).sort(
 					}
 				});
 
-				searchStatus.style.display = 'flex';
-				if (searchQueryDisplay) searchQueryDisplay.textContent = `「${query}」`;
-				if (resultCountDisplay) resultCountDisplay.textContent = count.toString();
+				// URL検索（テキスト）がある場合のみ、検索結果バッジを表示
+				if (query && searchStatus) {
+					searchStatus.style.display = 'flex';
+					if (searchQueryDisplay) searchQueryDisplay.textContent = `「${query}」`;
+					if (resultCountDisplay) resultCountDisplay.textContent = count.toString();
+				}
+			}
+
+			// 初期表示時のフィルタリング
+			filterPosts();
+
+			// プルダウン変更時のイベントリスナー
+			if (categorySelect) {
+				categorySelect.addEventListener('change', filterPosts);
 			}
 		</script>
 
 		<style>
+			.category-filter {
+				margin-bottom: 2rem;
+				display: flex;
+				align-items: center;
+				gap: 1rem;
+				background: white;
+				padding: 1rem 1.5rem;
+				border-radius: 8px;
+				box-shadow: var(--box-shadow);
+			}
+			.category-label {
+				font-weight: bold;
+				color: var(--accent-dark);
+			}
+			.category-select {
+				padding: 0.5rem;
+				border: 1px solid var(--gray-light);
+				border-radius: 4px;
+				font-size: 1rem;
+				color: var(--black);
+				cursor: pointer;
+				flex-grow: 1;
+				max-width: 300px;
+			}
+			@media (max-width: 720px) {
+				.category-filter {
+					flex-direction: column;
+					align-items: stretch;
+				}
+				.category-select {
+					max-width: none;
+				}
+			}
 			.search-status {
 				background: var(--gray-light);
 				padding: 1rem;

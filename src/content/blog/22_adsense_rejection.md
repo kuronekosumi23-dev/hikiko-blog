@@ -1,7 +1,7 @@
 ---
 title: 'ブログ開設2ヶ月！ついにアドセンス申請してみた結果…落ちたあああああああああ！'
 description: 'アドセンス審査体験記'
-pubDate: '2026-04/11'
+pubDate: '2026-04-11'
 heroImage: '/images/blog/Gemini_Generated_Image_5t1l5l5t1l5l5t1l.webp'
 category: '生存戦略'
 ---

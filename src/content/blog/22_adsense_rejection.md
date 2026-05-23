@@ -1,5 +1,5 @@
 ---
-title: 'ブログ開設2ヶ月！ついにアドセンス申請してみた結果…落ちたあああああああああ！'
+title: '【UX改善】ブログ初心者がついに直面した「見えない壁」！スマホ迷子を防ぐ5つの大改造と生存戦略'
 description: 'アドセンス審査体験記'
 pubDate: '2026-04-11'
 heroImage: '/images/blog/Gemini_Generated_Image_5t1l5l5t1l5l5t1l.webp'

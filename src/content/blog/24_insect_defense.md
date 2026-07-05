@@ -2,7 +2,7 @@
 title: '【お悩み解決？】なぜか虫に「全自動ロックオン」される体質。その意外すぎる科学的根拠とサバイバル術'
 description: '「なぜ私ばっかり！？」全校生徒がざわついた黄色い帽子の悲劇から、中学時代の空中衝突事件まで。ひきこもりライフの視点から虫を引き寄せる謎の体質と、その驚きの原因（？）を大公開。'
 pubDate: '2026-04-21'
-heroImage: '/images/blog/musinisukaresuguru.webp'
+heroImage: '/images/blog/musi.jpg'
 category: '生存戦略'
 ---
 

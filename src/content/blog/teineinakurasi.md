@@ -2,7 +2,7 @@
 title: "「丁寧な暮らし」にボコボコにされたアラサーひきこもり、QOLを地の底まで爆下げして無事大優勝するの巻"
 description: "丁寧な暮らしは画面の中！現実は丁寧だけでは生きられぬのだ！を発信していく。"
 pubDate: "2026-07-02"
-'heroImage: '/images/blog/teineinaseikatu.jpg'
+heroImage: '/images/blog/teineinaseikatu.jpg'
 category: '生存戦略'
 ---
 

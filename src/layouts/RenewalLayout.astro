@@ -1,0 +1,66 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+interface Props { title: string; description: string; home?: boolean; }
+const { title, description, home = false } = Astro.props;
+const links = [['HOME', '/'], ['PROFILE', '/about/'], ['BLOG', '/blog/'], ['ILLUSTRATION', '/illustration/'], ['ETC.', '/etc/']];
+---
+<!doctype html>
+<html lang="ja">
+  <head><BaseHead title={title} description={description} /></head>
+  <body class="renewal">
+    <a class="skip-link" href="#main">本文へ移動</a>
+    <header class="site-header">
+      <a class="brand" href="/">HIKIKO SURVIVAL<span>WRITE / DRAW / EXPLORE</span></a>
+      <nav class="desktop-nav" aria-label="メインメニュー">
+        {links.map(([label, href]) => <a href={href} aria-current={Astro.url.pathname === href ? 'page' : undefined}>{label}</a>)}
+      </nav>
+      <details class="mobile-nav"><summary>MENU <span aria-hidden="true">＋</span></summary><nav aria-label="モバイルメニュー">{links.map(([label, href]) => <a href={href} aria-current={Astro.url.pathname === href ? 'page' : undefined}>{label}</a>)}</nav></details>
+      <form class="site-search" action="/blog/" method="get" role="search">
+        <input type="search" name="q" aria-label="ブログ内検索" placeholder="記事を検索" required />
+        <button type="submit" aria-label="検索"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg></button>
+      </form>
+    </header>
+    <main id="main" class:list={['site-main', { 'is-home': home }]}><slot /></main>
+    <footer class="site-footer"><p>© {new Date().getFullYear()} HIKIKO SURVIVAL</p><nav aria-label="フッターメニュー"><a href="/contact/">Contact</a><a href="/privacy/">Privacy Policy</a></nav></footer>
+  </body>
+</html>
+<style>
+  :global(body.renewal) { background: #fffefa; color: #292824; font-family: 'Atkinson', 'Yu Gothic', 'Hiragino Kaku Gothic ProN', sans-serif; }
+  :global(.renewal *) { box-sizing: border-box; }
+  :global(.renewal a:focus-visible), :global(.renewal summary:focus-visible), :global(.renewal button:focus-visible), :global(.renewal input:focus-visible) { outline: 3px solid #9b7211; outline-offset: 5px; }
+  .skip-link { position: absolute; top: -100px; left: 16px; z-index: 20; padding: 12px; background: white; color: #292824; }
+  .skip-link:focus { top: 10px; }
+  .site-header { min-height: 100px; padding: 24px max(28px, calc((100vw - 1280px) / 2)); display: flex; align-items: center; gap: 28px; border-bottom: 1px solid #e6e2d7; position: relative; z-index: 5; background: #fffefa; }
+  .brand { white-space: nowrap; font-size: 21px; font-weight: 700; letter-spacing: .09em; text-decoration: none; color: #292824; line-height: 1.4; }
+  .brand span { display: block; font-size: 8px; font-weight: 400; letter-spacing: .24em; margin-top: 6px; }
+  .desktop-nav { display: flex; gap: 22px; margin-left: auto; }
+  .desktop-nav a, .mobile-nav a { font-size: 11px; letter-spacing: .08em; color: #47463e; text-decoration: none; padding: 10px 0; }
+  .desktop-nav a:hover, a[aria-current='page'] { border-bottom: 1px solid #9b7211; color: #8a6812; }
+  .site-search { display: flex; align-items: center; border-bottom: 1px solid #b7b09e; width: 140px; flex-shrink: 0; }
+  .site-search input { min-width: 0; width: 100%; padding: 9px 0; font-size: 11px; color: #292824; border: 0; background: transparent; }
+  .site-search button { flex-shrink: 0; min-width: 36px; min-height: 36px; border: 0; background: transparent; color: #292824; cursor: pointer; }
+  .mobile-nav { display: none; }
+  .site-main { width: min(960px, calc(100% - 48px)); max-width: none; padding: 64px 0; margin: auto; }
+  .site-main.is-home { width: 100%; padding: 0; }
+  .site-footer { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 70px; padding: 20px max(28px, calc((100vw - 1280px) / 2)); border-top: 1px solid #e6e2d7; }
+  .site-footer p { margin: 0; font-size: 9px; letter-spacing: .08em; }
+  .site-footer nav { display: flex; gap: 25px; }
+  .site-footer a { color: #555147; font-size: 11px; text-decoration: none; padding: 8px 0; }
+  .site-footer a:hover { text-decoration: underline; }
+  @media (max-width: 1100px) { .site-header { flex-wrap: wrap; gap: 16px 24px; } .desktop-nav { gap: 18px; } .site-search { margin-left: auto; } }
+  @media (max-width: 720px) {
+    .site-header { padding: 22px; gap: 18px; min-height: 0; }
+    .brand { font-size: 18px; }
+    .desktop-nav { display: none; }
+    .mobile-nav { display: block; margin-left: auto; }
+    .mobile-nav summary { cursor: pointer; list-style: none; font-size: 11px; padding: 12px 0 12px 12px; }
+    .mobile-nav summary::-webkit-details-marker { display: none; }
+    .mobile-nav summary span { margin-left: 8px; }
+    .mobile-nav nav { position: absolute; left: 0; right: 0; top: 100%; display: flex; flex-direction: column; background: #fffefa; padding: 14px 28px; border-block: 1px solid #e6e2d7; box-shadow: 0 8px 12px #2928240d; }
+    .mobile-nav a { padding: 14px 0; }
+    .site-search { width: 100%; }
+    .site-search input { font-size: 16px; }
+    .site-footer { flex-wrap: wrap; padding: 22px; gap: 10px 20px; }
+  }
+  @media (max-width: 360px) { .site-header { gap: 12px; } .brand { font-size: 16px; } }
+</style>

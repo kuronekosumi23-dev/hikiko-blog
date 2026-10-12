@@ -1,0 +1,16 @@
+---
+import RenewalLayout from '../layouts/RenewalLayout.astro';
+---
+<RenewalLayout title="ILLUSTRATION | HIKIKO SURVIVAL" description="ヒキコのイラスト。描いたものを少しずつ、この場所に。">
+  <p class="eyebrow">DRAW</p><h1>ILLUSTRATION</h1><p class="intro">描いたものを少しずつ、この場所に。</p>
+  <figure><a href="/home-main-visual.webp" aria-label="HOMEのイラストを原寸で見る"><img src="/home-main-visual.webp" alt="金髪の女の子と携帯電話を描いた、青・黄色・水色のカラフルなイラスト" width="1920" height="1355" /></a><figcaption>HOMEのメインビジュアル <span>Illustration by Hikiko</span></figcaption></figure>
+  <a href="/">← HOME</a>
+</RenewalLayout>
+<style>
+  .eyebrow { font-size: 11px; letter-spacing: .2em; color: #786b47; }
+  h1 { font-size: clamp(28px, 6vw, 44px); letter-spacing: .08em; }
+  .intro { font-size: 14px; margin: 24px 0 42px; }
+  figure { margin: 0 0 40px; } img { display: block; width: 100%; height: auto; border-radius: 0; }
+  figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; margin-top: 16px; font-size: 12px; } figcaption span { font-size: 10px; color: #6d675b; }
+  a { color: #6c5b2b; font-size: 12px; }
+</style>

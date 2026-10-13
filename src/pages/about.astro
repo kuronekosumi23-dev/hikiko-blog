@@ -61,7 +61,7 @@ import RenewalLayout from '../layouts/RenewalLayout.astro';
 </RenewalLayout>
 
 <style>
-  .profile { color: #494741; font-size: 18px; font-weight: 600; line-height: 2; }
+  .profile { color: #494741; font-size: 17px; font-weight: 500; line-height: 2; }
   .profile h1, .profile h2, .profile h3 { color: #292824; font-weight: 700; }
   .page-heading { margin-bottom: 40px; }
   .page-heading h1 { font-size: clamp(30px, 4vw, 42px); letter-spacing: .14em; margin: 0; }
@@ -75,6 +75,7 @@ import RenewalLayout from '../layouts/RenewalLayout.astro';
   .speech .eyebrow { margin: 0 0 12px; }
   .speech h2 { font-size: clamp(20px, 2.3vw, 25px); line-height: 1.6; margin-bottom: 18px; }
   .speech p { font-size: 18px; margin: 0 0 18px; }
+  .speech p:not(.eyebrow) { font-size: 17px; font-weight: 500; }
   .speech p:last-child { margin-bottom: 0; }
   .profile-section { margin-top: 72px; }
   .section-heading { margin-bottom: 25px; }
@@ -97,7 +98,7 @@ import RenewalLayout from '../layouts/RenewalLayout.astro';
   .approach-grid > div:nth-child(2) { background: #f4efeb; }
   .approach-grid > div:nth-child(3) { background: #f0eff3; }
   .item-number { display: block; color: #68634f; font-size: 12px; letter-spacing: .1em; margin-bottom: 14px; }
-  .approach-grid p { font-size: 18px; margin: 0; }
+  .approach-grid p { font-size: 17px; margin: 0; }
   .text-link { display: inline-flex; align-items: center; gap: 24px; color: #494741; text-underline-offset: 6px; font-size: 16px; }
   .text-link:hover { color: #8a6812; }
   .contact-panel { margin-top: 72px; padding: 44px 28px; text-align: center; background: #efebe2; border-radius: 20px; }
@@ -111,8 +112,9 @@ import RenewalLayout from '../layouts/RenewalLayout.astro';
     .approach-grid { grid-template-columns: 1fr; gap: 14px; }
   }
   @media (max-width: 600px) {
-    .profile { font-size: 17px; }
-    .speech p, .approach-grid p { font-size: 17px; }
+    .profile { font-size: 16px; }
+    .speech p, .approach-grid p { font-size: 16px; }
+    .speech p:not(.eyebrow) { font-size: 16px; }
     .page-heading { margin-bottom: 28px; }
     .introduction { grid-template-columns: minmax(0, 1fr); justify-items: center; gap: 22px; padding: 24px 16px; border-radius: 28px 36px 24px 32px; }
     .profile-cat { width: 124px; }

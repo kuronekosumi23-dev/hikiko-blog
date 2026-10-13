@@ -154,6 +154,10 @@ const categories = Object.keys(categoryCounts).sort();
 			const searchQueryDisplay = document.getElementById('searchQuery');
 			const resultCountDisplay = document.getElementById('resultCount');
 			const categorySelect = document.getElementById('categorySelect') as HTMLSelectElement;
+			const requestedCategory = urlParams.get('category');
+			if (categorySelect && requestedCategory && Array.from(categorySelect.options).some(option => option.value === requestedCategory)) {
+				categorySelect.value = requestedCategory;
+			}
 
 			function filterPosts() {
 				if (!postsList) return;

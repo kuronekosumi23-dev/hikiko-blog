@@ -68,8 +68,8 @@ import RenewalLayout from '../layouts/RenewalLayout.astro';
   .page-heading p { margin: 10px 0 0; font-size: 16px; letter-spacing: .12em; color: #635e58; }
   .introduction { display: grid; grid-template-columns: 190px minmax(0, 1fr); align-items: center; gap: 40px; padding: 42px 36px; background: #f0ede7; border-radius: 40px 60px 36px 52px; }
   .profile-cat { display: block; width: 190px; height: auto; border-radius: 0; }
-  .speech { position: relative; isolation: isolate; padding: 36px 38px; }
-  .speech::before { content: ''; position: absolute; inset: 0; z-index: -1; background: #fff; border-radius: 40% 49% 43% 39% / 18% 35% 28% 27%; }
+  .speech { position: relative; isolation: isolate; padding: 48px 44px 64px; }
+  .speech::before { content: ''; position: absolute; inset: 0; z-index: -1; background: #fff; border-radius: 40% 49% 35% 22% / 15% 28% 18% 14%; }
   .speech::after { content: ''; position: absolute; left: -18px; top: 45%; z-index: -1; width: 48px; height: 42px; background: #fff; border-radius: 4px 0 0 36px; transform: rotate(23deg); }
   .eyebrow { display: block; color: #68634f; font-size: 13px; font-weight: 700; letter-spacing: .16em; line-height: 1.6; }
   .speech .eyebrow { margin: 0 0 12px; }
@@ -108,7 +108,7 @@ import RenewalLayout from '../layouts/RenewalLayout.astro';
   @media (max-width: 800px) {
     .introduction { grid-template-columns: 140px minmax(0, 1fr); gap: 24px; padding: 32px 24px; }
     .profile-cat { width: 140px; }
-    .speech { padding: 30px 26px; }
+    .speech { padding: 40px 30px 56px; }
     .approach-grid { grid-template-columns: 1fr; gap: 14px; }
   }
   @media (max-width: 600px) {
@@ -118,7 +118,7 @@ import RenewalLayout from '../layouts/RenewalLayout.astro';
     .page-heading { margin-bottom: 28px; }
     .introduction { grid-template-columns: minmax(0, 1fr); justify-items: center; gap: 22px; padding: 24px 16px; border-radius: 28px 36px 24px 32px; }
     .profile-cat { width: 124px; }
-    .speech { width: 100%; padding: 30px 24px; }
+    .speech { width: 100%; padding: 40px 24px 48px; }
     .speech::before { border-radius: 30% 25% 26% 22% / 9% 13% 9% 12%; }
     .speech::after { top: -13px; left: calc(50% - 20px); width: 35px; height: 32px; transform: rotate(45deg); border-radius: 5px 0 0 0; }
     .profile-section { margin-top: 48px; }

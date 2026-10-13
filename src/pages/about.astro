@@ -61,20 +61,20 @@ import RenewalLayout from '../layouts/RenewalLayout.astro';
 </RenewalLayout>
 
 <style>
-  .profile { color: #494741; font-size: 16px; line-height: 2; }
-  .profile h1, .profile h2, .profile h3 { color: #292824; }
+  .profile { color: #494741; font-size: 18px; font-weight: 600; line-height: 2; }
+  .profile h1, .profile h2, .profile h3 { color: #292824; font-weight: 700; }
   .page-heading { margin-bottom: 40px; }
   .page-heading h1 { font-size: clamp(30px, 4vw, 42px); letter-spacing: .14em; margin: 0; }
-  .page-heading p { margin: 10px 0 0; font-size: 14px; letter-spacing: .12em; color: #635e58; }
+  .page-heading p { margin: 10px 0 0; font-size: 16px; letter-spacing: .12em; color: #635e58; }
   .introduction { display: grid; grid-template-columns: 190px minmax(0, 1fr); align-items: center; gap: 40px; padding: 42px 36px; background: #f0ede7; border-radius: 40px 60px 36px 52px; }
   .profile-cat { display: block; width: 190px; height: auto; border-radius: 0; }
   .speech { position: relative; isolation: isolate; padding: 36px 38px; }
   .speech::before { content: ''; position: absolute; inset: 0; z-index: -1; background: #fff; border-radius: 40% 49% 43% 39% / 18% 35% 28% 27%; }
   .speech::after { content: ''; position: absolute; left: -18px; top: 45%; z-index: -1; width: 48px; height: 42px; background: #fff; border-radius: 4px 0 0 36px; transform: rotate(23deg); }
-  .eyebrow { display: block; color: #68634f; font-size: 11px; font-weight: 700; letter-spacing: .16em; line-height: 1.6; }
+  .eyebrow { display: block; color: #68634f; font-size: 13px; font-weight: 700; letter-spacing: .16em; line-height: 1.6; }
   .speech .eyebrow { margin: 0 0 12px; }
   .speech h2 { font-size: clamp(20px, 2.3vw, 25px); line-height: 1.6; margin-bottom: 18px; }
-  .speech p { font-size: 15px; margin: 0 0 14px; }
+  .speech p { font-size: 18px; margin: 0 0 18px; }
   .speech p:last-child { margin-bottom: 0; }
   .profile-section { margin-top: 72px; }
   .section-heading { margin-bottom: 25px; }
@@ -85,24 +85,24 @@ import RenewalLayout from '../layouts/RenewalLayout.astro';
   .experience-list > div:last-child { border-bottom: 1px solid #e6e2d7; }
   dt { font-weight: 700; }
   dd { margin: 0; }
-  .section-note { font-size: 14px; color: #635e58; }
+  .section-note { font-size: 16px; color: #635e58; }
   .journey { list-style: none; padding: 0 0 0 28px; margin: 0 0 0 6px; border-left: 1px solid #d1cabd; }
   .journey li { position: relative; padding: 0 0 30px 10px; }
   .journey li:last-child { padding-bottom: 0; }
   .journey li::before { content: ''; position: absolute; top: 10px; left: -34px; width: 11px; height: 11px; border: 2px solid #fffefa; background: #a59b85; border-radius: 50%; }
-  .profile h3 { font-size: 18px; line-height: 1.7; margin: 0 0 10px; }
+  .profile h3 { font-size: 20px; line-height: 1.7; margin: 0 0 10px; }
   .journey p { margin: 0; }
   .approach-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
   .approach-grid > div { background: #f0f2ed; padding: 26px 22px; border-radius: 12px; }
   .approach-grid > div:nth-child(2) { background: #f4efeb; }
   .approach-grid > div:nth-child(3) { background: #f0eff3; }
   .item-number { display: block; color: #68634f; font-size: 12px; letter-spacing: .1em; margin-bottom: 14px; }
-  .approach-grid p { font-size: 15px; margin: 0; }
-  .text-link { display: inline-flex; align-items: center; gap: 24px; color: #494741; text-underline-offset: 6px; font-size: 14px; }
+  .approach-grid p { font-size: 18px; margin: 0; }
+  .text-link { display: inline-flex; align-items: center; gap: 24px; color: #494741; text-underline-offset: 6px; font-size: 16px; }
   .text-link:hover { color: #8a6812; }
   .contact-panel { margin-top: 72px; padding: 44px 28px; text-align: center; background: #efebe2; border-radius: 20px; }
   .contact-panel p { margin: 20px 0 26px; }
-  .contact-link { display: inline-flex; align-items: center; justify-content: space-between; gap: 48px; padding: 14px 26px; background: #49483f; color: #fffefa; text-decoration: none; font-size: 15px; font-weight: 700; border-radius: 4px; }
+  .contact-link { display: inline-flex; align-items: center; justify-content: space-between; gap: 48px; padding: 14px 26px; background: #49483f; color: #fffefa; text-decoration: none; font-size: 17px; font-weight: 700; border-radius: 4px; }
   .contact-link:hover { background: #68634f; color: #fffefa; }
   @media (max-width: 800px) {
     .introduction { grid-template-columns: 140px minmax(0, 1fr); gap: 24px; padding: 32px 24px; }
@@ -111,6 +111,8 @@ import RenewalLayout from '../layouts/RenewalLayout.astro';
     .approach-grid { grid-template-columns: 1fr; gap: 14px; }
   }
   @media (max-width: 600px) {
+    .profile { font-size: 17px; }
+    .speech p, .approach-grid p { font-size: 17px; }
     .page-heading { margin-bottom: 28px; }
     .introduction { grid-template-columns: minmax(0, 1fr); justify-items: center; gap: 22px; padding: 24px 16px; border-radius: 28px 36px 24px 32px; }
     .profile-cat { width: 124px; }

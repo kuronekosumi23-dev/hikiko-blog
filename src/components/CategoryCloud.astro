@@ -7,7 +7,7 @@ const categories = [...new Set(posts.map((post) => post.data.category).filter(Bo
 
 <div class="category-cloud">
 	{categories.map((category) => (
-		<a href={`/blog/category/${category}/`} class="category-tag">
+		<a href={`/blog/?category=${encodeURIComponent(category)}`} class="category-tag">
 			#{category}
 		</a>
 	))}

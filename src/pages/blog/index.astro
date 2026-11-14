@@ -1,248 +1,187 @@
 ---
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
-import BaseHead from '../../components/BaseHead.astro';
-import Footer from '../../components/Footer.astro';
+import RenewalLayout from '../../layouts/RenewalLayout.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
-import Header from '../../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 
-const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
-
-// カテゴリーごとの記事数をカウント
-const categoryCounts = posts.reduce((acc, post) => {
-	const cat = post.data.category || '未分類';
-	acc[cat] = (acc[cat] || 0) + 1;
-	return acc;
-}, {} as Record<string, number>);
-
-// セレクトボックス用にカテゴリー名を取得してソート
-const categories = Object.keys(categoryCounts).sort();
+const categories = [
+  { id: 'survival', name: 'SURVIVAL', label: '生存戦略', sources: ['生存戦略'], description: '心と体を守りながら、自分のペースで暮らすための工夫。' },
+  { id: 'sedori', name: 'SEDORI', label: 'せどり記録', sources: ['せどり記録', 'せどり＆サバイバル'], description: '仕入れ、出品、発送。家で働くための試行錯誤の記録。' },
+  { id: 'diary', name: 'DIARY', label: 'ひきこもり日記', sources: ['ひきこもり日記'], description: '好きなもの、日々の発見。ひきこもり生活のあれこれ。' },
+  { id: 'memory', name: 'MEMORY', label: '回想', sources: ['回想'], description: '過去の出来事を、今の自分の視点でもう一度。' },
+];
+const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const categoryFor = (source?: string) => categories.find(category => category.sources.includes(source || ''));
+const countFor = (id: string) => posts.filter(post => categoryFor(post.data.category)?.id === id).length;
+const unassigned = posts.filter(post => !categoryFor(post.data.category));
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5600460280023504"
-     crossorigin="anonymous"></script>
-		<style>
-			main {
-				width: 960px;
-			}
-			ul {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 2rem;
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
-			}
-			ul li {
-				width: calc(50% - 1rem);
-			}
-			ul li * {
-				text-decoration: none;
-				transition: 0.2s ease;
-			}
-			ul li:first-child {
-				width: 100%;
-				margin-bottom: 1rem;
-				text-align: center;
-			}
-			ul li:first-child img {
-				width: 100%;
-			}
-			ul li:first-child .title {
-				font-size: 2.369rem;
-			}
-			ul li img {
-				width: 100% !important;
-				height: auto !important;
-				aspect-ratio: 16 / 9 !important;
-				object-fit: cover !important;
-				margin-bottom: 0.5rem;
-				border-radius: 12px;
-			}
-			ul li a {
-				display: block;
-			}
-			.title {
-				margin: 0;
-				color: rgb(var(--black));
-				line-height: 1;
-			}
-			.date {
-				margin: 0;
-				color: rgb(var(--gray));
-			}
-			ul li a:hover h4,
-			ul li a:hover .date {
-				color: rgb(var(--accent));
-			}
-			ul a:hover img {
-				box-shadow: var(--box-shadow);
-			}
-			@media (max-width: 720px) {
-				ul {
-					gap: 0.5em;
-				}
-				ul li {
-					width: 100%;
-					text-align: center;
-				}
-				ul li:first-child {
-					margin-bottom: 0;
-				}
-				ul li:first-child .title {
-					font-size: 1.563em;
-				}
-			}
-		</style>
-	</head>
-	<body>
-		<Header />
-		<main>
-			<div class="search-status" id="searchStatus" style="display: none;">
-				<p><span id="searchQuery"></span> の検索結果: <span id="resultCount"></span>件</p>
-				<a href="/blog" class="clear-search">検索をクリア</a>
-			</div>
+<RenewalLayout title="BLOG | HIKIKO SURVIVAL" description="専業ひきこもりの生存戦略。推しと健康と、時々せどり。暮らしの工夫やせどりの記録、日々の発見を綴ります。">
+  <div class="blog-page">
+    <header class="blog-heading">
+      <p class="eyebrow">HIKIKO'S JOURNAL</p><h1>BLOG</h1>
+      <h2>専業ひきこもりの生存戦略</h2><p class="tagline">推しと健康と、時々せどり。</p>
+    </header>
+    <section class="category-guide" aria-labelledby="category-heading">
+      <div class="section-heading"><h2 id="category-heading">こんなことを書いています</h2><span>4 CATEGORIES</span></div>
+      <div class="category-grid">
+        {categories.map((category, index) => (
+          <a class={`category-card ${category.id}`} href={`?category=${encodeURIComponent(category.label)}#articles`} data-filter={category.id}>
+            <span class="card-number" aria-hidden="true">0{index + 1}<span>↗</span></span>
+            <h3>{category.name}<small>{category.label}</small></h3><p>{category.description}</p>
+            <span class="card-count">{countFor(category.id)} ARTICLES</span>
+          </a>
+        ))}
+      </div>
+    </section>
+    <section id="articles" aria-labelledby="articles-heading">
+      <div class="section-heading"><h2 id="articles-heading">記事一覧</h2><span>ALL ENTRIES</span></div>
+      <form id="blogFilters" class="filters" action="/blog/" method="get" role="search" aria-label="記事の絞り込み">
+        <div><label for="blogQuery">キーワードで探す</label><div class="search-input"><input id="blogQuery" type="search" name="q" placeholder="気になる言葉を入力" /><button type="submit">検索</button></div></div>
+        <div><label for="categorySelect">カテゴリー</label><select id="categorySelect" name="category" autocomplete="off"><option value="all">すべての記事（{posts.length}）</option>{categories.map(category => <option value={category.label} data-id={category.id}>{category.name} / {category.label}（{countFor(category.id)}）</option>)}{unassigned.length > 0 && <option value="unassigned" data-id="unassigned">分類確認中（{unassigned.length}）</option>}</select></div>
+      </form>
+      <div class="results-bar"><p id="resultStatus" role="status" aria-live="polite">全{posts.length}件の記事</p><a id="clearFilters" href="/blog/#articles" hidden>絞り込みをクリア</a></div>
+      <noscript><p>絞り込みにはJavaScriptを使用します。以下からすべての記事をご覧いただけます。</p></noscript>
+      <ul id="postsList">
+        {posts.map((post, index) => {
+          const category = categoryFor(post.data.category);
+          return <li class:list={['post-row', { 'image-right': index % 2 === 1 }]} data-category={category?.id || 'unassigned'} data-source-category={post.data.category || ''}>
+            <a class={`post-image ${category?.id || ''}`} href={`/blog/${post.id}/`} aria-label={`${post.data.title}を読む`}>
+              {post.data.heroImage ? (typeof post.data.heroImage === 'string' ? <img src={post.data.heroImage} alt="" width="720" height="480" loading="lazy" /> : <Image src={post.data.heroImage} alt="" width={720} height={480} loading="lazy" />) : <span class="image-placeholder" aria-hidden="true">{category?.name || 'JOURNAL'}</span>}
+            </a>
+            <div class="post-copy">
+              <div class="post-meta"><span class={`category-badge ${category?.id || ''}`}>{category ? `${category.name} / ${category.label}` : post.data.category || '分類確認中'}</span><FormattedDate date={post.data.pubDate} /></div>
+              <h3 class="title"><a href={`/blog/${post.id}/`}>{post.data.title}</a></h3>
+              <p class="post-description">{post.data.description}</p><a class="read-link" href={`/blog/${post.id}/`}>記事を読む <span aria-hidden="true">↗</span></a>
+            </div>
+          </li>;
+        })}
+      </ul>
+      <p id="emptyResults" class="empty-results" hidden>該当する記事がありません。キーワードやカテゴリーを変えてみてください。</p>
+    </section>
+  </div>
+</RenewalLayout>
 
-			<div class="category-filter">
-				<label for="categorySelect" class="category-label">📂 カテゴリー一覧</label>
-				<select id="categorySelect" class="category-select" autocomplete="off">
-					<option value="all">すべての記事</option>
-					{
-						categories.map((cat) => (
-							<option value={cat}>{cat} ({categoryCounts[cat]})</option>
-						))
-					}
-				</select>
-			</div>
+<script>
+  const form = document.querySelector<HTMLFormElement>('#blogFilters')!;
+  const input = document.querySelector<HTMLInputElement>('#blogQuery')!;
+  const select = document.querySelector<HTMLSelectElement>('#categorySelect')!;
+  const rows = Array.from(document.querySelectorAll<HTMLElement>('#postsList > li'));
+  const status = document.querySelector<HTMLElement>('#resultStatus')!;
+  const clear = document.querySelector<HTMLAnchorElement>('#clearFilters')!;
+  const empty = document.querySelector<HTMLElement>('#emptyResults')!;
+  const normalize = (value: string) => value.normalize('NFKC').toLocaleLowerCase().trim();
+  function filterPosts(updateUrl = false) {
+    const query = normalize(input.value);
+    const selected = select.selectedOptions[0]?.dataset.id || 'all';
+    let count = 0;
+    rows.forEach(row => {
+      const title = normalize(row.querySelector('.title')?.textContent || '');
+      const description = normalize(row.querySelector('.post-description')?.textContent || '');
+      row.hidden = !((!query || `${title} ${description}`.includes(query)) && (selected === 'all' || row.dataset.category === selected));
+      if (!row.hidden) { row.classList.toggle('image-right', count % 2 === 1); count++; }
+    });
+    status.textContent = query ? `「${input.value.trim()}」の検索結果：${count}件` : `${select.value === 'all' ? 'すべての記事' : select.value}：${count}件`;
+    clear.hidden = !query && selected === 'all'; empty.hidden = count !== 0;
+    if (updateUrl) {
+      const url = new URL(window.location.href);
+      input.value.trim() ? url.searchParams.set('q', input.value.trim()) : url.searchParams.delete('q');
+      select.value !== 'all' ? url.searchParams.set('category', select.value) : url.searchParams.delete('category');
+      window.history.replaceState(null, '', url);
+    }
+  }
+  function restoreUrl() {
+    const params = new URLSearchParams(window.location.search); input.value = params.get('q') || '';
+    const requested = params.get('category');
+    const legacyRow = rows.find(row => row.dataset.sourceCategory === requested);
+    const option = Array.from(select.options).find(option => option.value === requested || option.dataset.id === requested || (legacyRow && option.dataset.id === legacyRow.dataset.category));
+    select.value = option?.value || 'all'; filterPosts();
+  }
+  form.addEventListener('submit', event => { event.preventDefault(); filterPosts(true); });
+  input.addEventListener('input', () => filterPosts(true)); select.addEventListener('change', () => filterPosts(true));
+  document.querySelectorAll<HTMLAnchorElement>('[data-filter]').forEach(link => link.addEventListener('click', event => {
+    event.preventDefault();
+    const option = Array.from(select.options).find(option => option.dataset.id === link.dataset.filter);
+    select.value = option?.value || 'all'; filterPosts(true);
+    document.getElementById('articles')?.scrollIntoView(); select.focus({ preventScroll: true });
+  }));
+  window.addEventListener('popstate', restoreUrl); restoreUrl();
+</script>
 
-			<section>
-				<ul id="postsList">
-					{
-						posts.map((post) => (
-							<li data-category={post.data.category || '未分類'}>
-								<a href={`/blog/${post.id}/`}>
-									{post.data.heroImage && (
-										<Image width={720} height={360} src={post.data.heroImage} alt="" />
-									)}
-									{post.data.category && (
-										<span class="category-badge" style="margin-top: 0.5rem; display: inline-block;">{post.data.category}</span>
-									)}
-									<h4 class="title" style="margin-top: 0.2rem;">{post.data.title}</h4>
-									<p class="date">
-										<FormattedDate date={post.data.pubDate} />
-									</p>
-								</a>
-							</li>
-						))
-					}
-				</ul>
-			</section>
-		</main>
-		<script>
-			// 検索およびカテゴリーのフィルタリングロジック
-			const urlParams = new URLSearchParams(window.location.search);
-			const query = urlParams.get('q')?.toLowerCase() || '';
-			const postsList = document.getElementById('postsList');
-			const searchStatus = document.getElementById('searchStatus');
-			const searchQueryDisplay = document.getElementById('searchQuery');
-			const resultCountDisplay = document.getElementById('resultCount');
-			const categorySelect = document.getElementById('categorySelect') as HTMLSelectElement;
-
-			function filterPosts() {
-				if (!postsList) return;
-				const selectedCategory = categorySelect?.value || 'all';
-				const posts = postsList.querySelectorAll('li');
-				let count = 0;
-
-				posts.forEach((post) => {
-					const title = (post as HTMLElement).querySelector('.title')?.textContent?.toLowerCase() || '';
-					const category = post.getAttribute('data-category');
-					
-					const matchesSearch = !query || title.includes(query);
-					const matchesCategory = selectedCategory === 'all' || category === selectedCategory;
-
-					if (matchesSearch && matchesCategory) {
-						(post as HTMLElement).style.display = 'block';
-						count++;
-					} else {
-						(post as HTMLElement).style.display = 'none';
-					}
-				});
-
-				// URL検索（テキスト）がある場合のみ、検索結果バッジを表示
-				if (query && searchStatus) {
-					searchStatus.style.display = 'flex';
-					if (searchQueryDisplay) searchQueryDisplay.textContent = `「${query}」`;
-					if (resultCountDisplay) resultCountDisplay.textContent = count.toString();
-				}
-			}
-
-			// 初期表示時のフィルタリング
-			filterPosts();
-
-			// プルダウン変更時のイベントリスナー
-			if (categorySelect) {
-				categorySelect.addEventListener('change', filterPosts);
-			}
-		</script>
-
-		<style>
-			.category-filter {
-				margin-bottom: 2rem;
-				display: flex;
-				align-items: center;
-				gap: 1rem;
-				background: white;
-				padding: 1rem 1.5rem;
-				border-radius: 8px;
-				box-shadow: var(--box-shadow);
-			}
-			.category-label {
-				font-weight: bold;
-				color: var(--accent-dark);
-			}
-			.category-select {
-				padding: 0.5rem;
-				border: 1px solid var(--gray-light);
-				border-radius: 4px;
-				font-size: 1rem;
-				color: var(--black);
-				cursor: pointer;
-				flex-grow: 1;
-				max-width: 300px;
-			}
-			@media (max-width: 720px) {
-				.category-filter {
-					flex-direction: column;
-					align-items: stretch;
-				}
-				.category-select {
-					max-width: none;
-				}
-			}
-			.search-status {
-				background: var(--gray-light);
-				padding: 1rem;
-				border-radius: 8px;
-				margin-bottom: 2rem;
-				display: none; /* JSで制御 */
-				justify-content: space-between;
-				align-items: center;
-			}
-			.search-status p { margin: 0; font-weight: bold; }
-			.clear-search {
-				font-size: 0.8rem;
-				color: var(--accent-dark);
-				text-decoration: underline;
-			}
-		</style>
-		<Footer />
-	</body>
-</html>
+<style>
+  .blog-page { color: #494741; font-size: 17px; line-height: 1.9; overflow-wrap: anywhere; }
+  .blog-page a { color: #292824; } .blog-page a:hover { color: #78601f; }
+  .blog-page :focus-visible { outline: 3px solid #9b7211; outline-offset: 5px; }
+  .blog-heading { padding: 10px 0 46px; border-bottom: 1px solid #e6e2d7; }
+  .eyebrow { font-size: 12px; letter-spacing: .18em; color: #68634f; margin: 0 0 14px; font-weight: 700; }
+  h1 { font-size: clamp(42px, 7vw, 72px); letter-spacing: .14em; margin: 0 0 24px; color: #292824; }
+  .blog-heading h2 { font-size: clamp(22px, 3vw, 30px); line-height: 1.6; letter-spacing: .06em; margin-bottom: 10px; }
+  .tagline { margin: 0; letter-spacing: .08em; }
+  .category-guide { margin: 46px 0 64px; }
+  .section-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 20px; margin-bottom: 24px; }
+  .section-heading h2 { font-size: 21px; line-height: 1.6; margin: 0; }
+  .section-heading > span { font-size: 11px; letter-spacing: .16em; color: #68634f; }
+  .category-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+  .survival { --tint: #e6efea; } .sedori { --tint: #f8edce; } .diary { --tint: #f4e5e5; } .memory { --tint: #ece9e2; }
+  .category-card { display: flex; flex-direction: column; min-width: 0; padding: 22px 18px; border-radius: 18px 18px 4px 4px; background: var(--tint); text-decoration: none; border: 1px solid transparent; }
+  .category-card:hover { border-color: #9a917c; }
+  .card-number { display: flex; justify-content: space-between; font-size: 12px; letter-spacing: .1em; margin-bottom: 26px; }
+  .category-card h3 { font-size: 18px; letter-spacing: .07em; margin: 0; }
+  .category-card small { display: block; font-size: 14px; letter-spacing: .04em; margin-top: 9px; }
+  .category-card p { font-size: 14px; line-height: 1.9; margin: 18px 0 24px; }
+  .card-count { margin-top: auto; font-size: 10px; letter-spacing: .12em; }
+  #articles { scroll-margin-top: 24px; }
+  .filters { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; background: #f3f1eb; padding: 24px; border-radius: 12px; }
+  .filters label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 8px; }
+  .filters input, .filters select { width: 100%; min-width: 0; min-height: 46px; background: #fffefa; color: #292824; border: 1px solid #bcb6a7; border-radius: 4px; padding: 10px 12px; font: inherit; font-size: 15px; }
+  .filters > div { min-width: 0; } .search-input { display: flex; gap: 8px; }
+  .search-input button { flex-shrink: 0; border: 0; background: #49483f; color: #fffefa; border-radius: 4px; padding: 8px 16px; font: inherit; font-size: 14px; cursor: pointer; }
+  .results-bar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 16px; margin: 20px 0 0; font-size: 14px; }
+  .results-bar p { margin: 0; } .results-bar a { text-underline-offset: 4px; }
+  #postsList { list-style: none; margin: 0; padding: 0; }
+  .post-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: center; padding: 48px 0; border-bottom: 1px solid #e6e2d7; }
+  [hidden] { display: none !important; }
+  .post-image { display: block; background: var(--tint, #efebe2); border-radius: 18px; overflow: hidden; }
+  .post-image img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 0; }
+  .image-placeholder { min-height: 240px; display: grid; place-items: center; letter-spacing: .2em; font-size: 22px; }
+  .image-right .post-image { grid-column: 2; grid-row: 1; } .image-right .post-copy { grid-column: 1; grid-row: 1; }
+  .post-copy { min-width: 0; }
+  .post-meta { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; font-size: 12px; color: #635e58; }
+  .category-badge { display: inline-block; padding: 4px 10px; border-radius: 4px; background: var(--tint, #efebe2); color: #494741; font-weight: 700; font-size: 11px; }
+  .title { font-size: clamp(20px, 2.3vw, 25px); line-height: 1.7; margin: 16px 0; }
+  .title a { text-decoration: none; } .title a:hover { text-decoration: underline; text-underline-offset: 5px; }
+  .post-description { font-size: 15px; line-height: 1.95; margin: 0 0 24px; }
+  .read-link { display: inline-flex; gap: 40px; align-items: center; font-size: 14px; font-weight: 700; text-decoration: none; border-bottom: 1px solid #9a917c; padding-bottom: 6px; }
+  .empty-results { padding: 40px 24px; background: #f3f1eb; border-radius: 12px; }
+  @media (max-width: 800px) { .category-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .post-row { gap: 26px; } }
+  @media (max-width: 720px) {
+    :global(.renewal .site-main) { width: calc(100% - 32px); max-width: 960px; padding: 36px 0 48px; }
+    .blog-page { width: 100%; min-width: 0; font-size: 16px; }
+    .blog-page > *, .category-grid > *, .post-row > * { min-width: 0; max-width: 100%; }
+    .blog-heading { padding: 0 0 28px; }
+    h1 { font-size: clamp(36px, 9vw, 46px); letter-spacing: .1em; margin-bottom: 20px; }
+    .blog-heading h2 { font-size: clamp(19px, 4.8vw, 23px); line-height: 1.65; letter-spacing: .03em; }
+    .tagline { font-size: 15px; line-height: 1.9; letter-spacing: .03em; }
+    .category-guide { margin: 28px 0 36px; }
+    .category-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+    .category-card { width: 100%; padding: 20px; border-radius: 14px 14px 4px 4px; }
+    .category-card h3 { font-size: 18px; line-height: 1.5; }
+    .category-card small { font-size: 14px; line-height: 1.7; margin-top: 6px; }
+    .category-card p { font-size: 15px; margin: 12px 0 16px; }
+    .card-number { margin-bottom: 12px; }
+    .section-heading { gap: 6px 12px; margin-bottom: 18px; }
+    .section-heading h2 { font-size: 18px; line-height: 1.7; }
+    .filters { grid-template-columns: minmax(0, 1fr); padding: 16px; gap: 18px; }
+    .filters input, .filters select { font-size: 16px; }
+    .search-input input { flex: 1 1 0; width: 0; }
+    .results-bar { margin-top: 16px; }
+    .post-row { grid-template-columns: minmax(0, 1fr); gap: 20px; padding: 28px 0; }
+    .post-image, .image-right .post-image { grid-column: 1; grid-row: 1; width: 100%; }
+    .post-copy, .image-right .post-copy { grid-column: 1; grid-row: 2; }
+    .post-image img { aspect-ratio: 16 / 9; }
+    .post-meta { gap: 8px 12px; }
+    .title { font-size: clamp(18px, 4.7vw, 21px); line-height: 1.75; margin: 12px 0; }
+    .post-description { font-size: 16px; margin-bottom: 18px; }
+    .empty-results { padding: 24px 16px; }
+  }
+</style>

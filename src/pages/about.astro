@@ -1,172 +1,129 @@
 ---
-import Layout from '../layouts/BlogPost.astro';
-const AboutHeroImage = '/yousai.png';
+import RenewalLayout from '../layouts/RenewalLayout.astro';
 ---
-<Layout
-	title="ひき子について"
-	description="35歳、ひきこもり。私が「生存戦略」を練り、発信する理由。"
-	pubDate={new Date('February 09 2026')}
-	heroImage={AboutHeroImage}
->
-	<p>
-		はじめまして。この「ひき子要塞」へ足を踏み入れてくださり、ありがとうございます。
-		私は、関東の片田舎にある築40年の自宅の一室で、10年以上の歳月を「ひきこもり」として過ごしてきました。
-	</p>
 
-	<div style="background: rgba(var(--accent-light), 0.2); padding: 1.5rem; border-radius: 8px; margin: 2rem 0;">
-		<h3 style="margin-top: 0;">運営者プロフィール</h3>
-		<ul>
-			<li><strong>名前：</strong>ひき子（Hikiko）</li>
-			<li><strong>年齢：</strong>35歳（中身はもっと幼かったり、逆に達観してたりします）</li>
-			<li><strong>職業：</strong>在宅サバイバー 兼 ネット物販（せどり）プレイヤー</li>
-			<li><strong>属性：</strong>アニメ、ゲーム、AIとの対話、深夜の静寂</li>
-		</ul>
-	</div>
+<RenewalLayout title="PROFILE | HIKIKO SURVIVAL" description="ヒキコのプロフィール。約2年間のWebライター経験、対応業務、執筆で大切にしていることをご紹介します。">
+  <div class="profile">
+    <header class="page-heading"><h1>PROFILE</h1><p>ヒキコについて</p></header>
 
-	<p>
-		世間一般で言う「35歳」という年齢は、キャリアを積み、家族を持ち、社会の屋台骨として活躍する時期なのかもしれません。
-		かつての私は、その「普通」という言葉に押しつぶされ、外に出ること、人と話すこと、および「社会と繋がること」に強い不安を感じていました。
-	</p>
+    <section class="introduction" aria-labelledby="intro-title">
+      <img class="profile-cat" src="/hikiko-profile-cat-600.png" alt="ヒキコの黒と赤の猫のイラスト" width="600" height="600" fetchpriority="high" />
+      <div class="speech">
+        <p class="eyebrow">HELLO, I'M HIKIKO.</p>
+        <h2 id="intro-title">はじめまして、ヒキコです。</h2>
+        <p>外で働くことが難しく、自宅で収入を得る方法としてWebライターを始めました。約2年間、恋愛・美容・暮らし・映画・ガジェットなど、さまざまなジャンルの記事を執筆してきました。</p>
+        <p>現在はせどりに取り組みながら、安定した収入を目指し、ライターの仕事も再開したいと考えています。これまでの経験を活かし、幅広いテーマに丁寧に向き合っていきたいと思っています。</p>
+      </div>
+    </section>
 
-	<h3>なぜ、今「発信」を始めたのか</h3>
-	<p>
-		10年という空白の期間。それは失ったものばかりに思えましたが、その暗闇の中で私が必死に掴み取ってきた「情報の断片」や「審美眼」、そして何より「孤独に耐えうるしなやかさ」がありました。
-	</p>
-	<p>
-		「このまま消えてしまうのは、あまりにももったいない」<br />
-		そう思ったとき、私の手元には使い古したパソコンと、少しのマニアックな知識だけが残っていました。
-		ならば、それを武器に自分だけの「要塞」を築き、そこから旗を振ってみよう。
-		それが、このブログの始まりです。
-	</p>
+    <section class="profile-section" aria-labelledby="experience-title">
+      <div class="section-heading"><span class="eyebrow">EXPERIENCE &amp; SERVICES</span><h2 id="experience-title">執筆経験・対応業務</h2></div>
+      <p>約2年間のWebライター経験があります。ご依頼の目的や読者に合わせて、記事の制作に取り組んできました。</p>
+      <dl class="experience-list">
+        <div><dt>執筆ジャンル</dt><dd>恋愛・美容・暮らし・映画・ガジェットなど</dd></div>
+        <div><dt>記事の執筆・構成</dt><dd>指定キーワードや構成に沿った執筆、テーマに応じた自由構成での記事制作</dd></div>
+        <div><dt>リサーチ</dt><dd>テーマに関する資料の収集、情報の根拠の確認</dd></div>
+        <div><dt>制作・納品の経験</dt><dd>WordPressでの記事制作、Word形式での納品</dd></div>
+      </dl>
+      <p class="section-note">上記以外のジャンルについても、内容を伺いながらご相談できればと思っています。</p>
+    </section>
 
-	<h3>私の生存戦略：3つの柱</h3>
-	<p>このブログ「生存戦略の要塞」では、主に以下の3つのクエストについて発信しています。</p>
-	<ul>
-<li><strong>1. 経済的サバイバル（せどり・物販）：</strong>誰にも雇われず、不用品販売・ネット物販を通じた自立への試行錯誤。コンビニ発送の対人不安をどうハックするか、梱包材をどうゼロ円で回すかといった超実戦的な知恵。</li>
-		
-<li><strong>2. 精神的サバイバル（メンタルハック）：</strong>家族との心の境界線の引き方、限界（または思考停止）状態からの環境リセット術、SNSのノイズを遮断する合理的スルー術など、自分を守るためのパッチ配布。</li>
+    <section class="profile-section" aria-labelledby="journey-title">
+      <div class="section-heading"><span class="eyebrow">MY JOURNEY</span><h2 id="journey-title">これまでの歩み</h2></div>
+      <ol class="journey">
+        <li><h3>Webライターとして活動</h3><p>在宅で働く方法を探す中で、Webライターの仕事を開始。約2年間、幅広いジャンルの記事制作を経験しました。</p></li>
+        <li><h3>内職へ</h3><p>その後、以前から探していた内職の仕事に移り、在宅での働き方を続けてきました。</p></li>
+        <li><h3>現在、そしてこれから</h3><p>現在はせどりに取り組んでいます。安定した収入につなげるため、ライターとしての仕事も再開したいと考えています。</p></li>
+      </ol>
+    </section>
 
-<li><strong>3. 魂のレガシー（オタク魂・AIツール活用）：</strong>作品に救われた経験や、AIツールを補助的に活用しながら、100%自身の体験に基づき執筆するこのブログについて。孤独な夜を乗り越えるためのエンタメとテクノロジーの活用法。
-※登場するキャラクター（田中くんなど）は、著者の思考を整理するための対話型キャラクターです。</li>
-	</ul>
+    <section class="profile-section" aria-labelledby="approach-title">
+      <div class="section-heading"><span class="eyebrow">MY APPROACH</span><h2 id="approach-title">執筆で大切にしていること</h2></div>
+      <div class="approach-grid">
+        <div><span class="item-number" aria-hidden="true">01</span><h3>根拠を確かめる</h3><p>資料を集め、情報の出典や根拠を確認することを重視しています。曖昧な情報をそのままにせず、丁寧に調べる姿勢を大切にしています。</p></div>
+        <div><span class="item-number" aria-hidden="true">02</span><h3>ご依頼の意図を汲み取る</h3><p>指定されたキーワードや構成、記事の目的を踏まえ、求められる内容に沿って文章を組み立てることを心がけています。</p></div>
+        <div><span class="item-number" aria-hidden="true">03</span><h3>読み手に伝わる文章に</h3><p>調べた内容を整理し、読み手が理解しやすい言葉で伝えることを大切にしています。初めて扱うテーマにも、一つずつ向き合います。</p></div>
+      </div>
+    </section>
 
-	<h3>最後に</h3>
-	<p>
-		私は、キラキラした成功者でも、社会復帰を完璧にを果たした超人でもありません。
-		今もまだ、夜の静寂に怯え、明日の太陽を疎ましく思う日もあります。
-	</p>
-	<p>
-		でも、そんな私の「足掻き」が、どこかの誰かの、ほんの1ミリの救いになれば。
-		あるいは、「こんなやつでも生きてるんだな」という安心感になれば。
-		そう願いながら、今日もキーボードを叩きます。
-	</p>
-	<p>
-		どうか、この要塞の旗印が、あなたの視界の隅っこで、静かにでも力強く揺れ続けてくれますように。
-	</p>
+    <section class="profile-section" aria-labelledby="interests-title">
+      <div class="section-heading"><span class="eyebrow">INTERESTS</span><h2 id="interests-title">好きなこと・関心のあること</h2></div>
+      <p>ゲーム、フィギュアやグッズ、クレーンゲーム、リペイント、VTuberの仕組み、心理、イラストなど。気になったことを調べたり、手を動かして試したりすることが好きです。</p>
+      <a class="text-link" href="/blog/">日々の発見や試行錯誤はBLOGへ <span aria-hidden="true">↗</span></a>
+    </section>
 
-	<hr />
+    <section class="contact-panel" aria-labelledby="contact-title">
+      <span class="eyebrow">CONTACT</span><h2 id="contact-title">執筆についてのご相談</h2>
+      <p>記事のテーマやご希望の内容など、<br class="desktop-break" />お問い合わせページからお気軽にご相談ください。</p>
+      <a class="contact-link" href="/contact/">お問い合わせ <span aria-hidden="true">↗</span></a>
+    </section>
+  </div>
+</RenewalLayout>
 
-	{/* ========================================
-	  ⭐ アドセンス審査合格後に復活させるセクション ⭐
-	  合格したら、このコメントアウトを外してください！
-	  （下の「- -」の2行を削除するだけでOK）
-	  <section class="support">
-		<h2>ひき子とこの要塞を応援する（差し入れ）</h2>
-		<p>
-			このブログの内容が少しでもお役に立ったり、「頑張れよ！」と思ってくださった方へ。<br/>
-			もしよろしければ、この場所の維持（活動資金）を応援していただけると、あやたちの声がもっと元気になります！
-		</p>
-		
-		<div class="support-links">
-			<div class="support-card">
-				<h3>💖 note（投げ銭・特別記事）</h3>
-				<p>ブログには書けない裏話や、深い考察などを不定期で更新しています。</p>
-				<a href="https://note.com/" class="btn">noteを見に行く</a>
-			</div>
-			<div class="support-card">
-				<h3>🛍️ Amazon ひき子のおすすめリスト</h3>
-				<p>これまでの「ひきこもり生活」で実際に使って、本当に心が救われたアイテムや役立った防衛グッズをまとめています。お買い物の参考にしていただけたら嬉しいです！</p>
-				<a href="https://www.amazon.jp/hz/wishlist/ls/BLWO84TNCWO4?ref_=wl_share" class="btn">愛用品リストを見る</a>
-			</div>
-		</div>
-
-		<p class="disclaimer">
-			📢 <strong>「興味ないよ！」という方は、全然スルーしてくださって構いません👍</strong><br/>
-			ここに来て、文章を読んでくださるだけで十分な応援です。<br/>
-			気が向いた時に、ひょいっと覗いていただけるような、そんな緩い関係でいられたら嬉しいです。
-		</p>
-	</section>
-	======================================== */}
-
-	<hr />
-	<p style="text-align: center;">
-		応援メッセージやお問い合わせは、<a href="/contact">こちらのお問い合わせフォーム</a>からお気軽にどうぞ！🍵💕
-	</p>
-
-	<style>
-		.intro {
-			line-height: 1.8;
-			margin-bottom: 3em;
-		}
-		.intro strong {
-			color: var(--accent-dark);
-		}
-		.support {
-			background: rgba(var(--accent), 0.05);
-			padding: 2em;
-			border-radius: 16px;
-			margin-top: 2em;
-		}
-		.support h2 {
-			text-align: center;
-			margin-bottom: 1.5em;
-		}
-		.support-links {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-			gap: 1.5em;
-			margin-bottom: 2em;
-		}
-		.support-card {
-			background: white;
-			padding: 1.5em;
-			border-radius: 12px;
-			box-shadow: var(--box-shadow);
-			display: flex;
-			flex-direction: column;
-			justify-content: space-between;
-		}
-		.support-card h3 {
-			font-size: 1.2rem;
-			margin-bottom: 1em;
-		}
-		.support-card p {
-			font-size: 0.95rem;
-			color: var(--gray);
-			margin-bottom: 1.5em;
-		}
-		.btn {
-			display: inline-block;
-			text-align: center;
-			background: var(--accent);
-			color: white;
-			padding: 0.8em 1.2em;
-			border-radius: 8px;
-			text-decoration: none;
-			font-weight: bold;
-			transition: background 0.3s ease;
-		}
-		.btn:hover {
-			background: var(--accent-dark);
-		}
-		.disclaimer {
-			text-align: center;
-			font-size: 0.9rem;
-			color: var(--gray);
-			background: white;
-			padding: 1em;
-			border-radius: 8px;
-			border: 1px dashed var(--accent);
-		}
-	</style>
-</Layout>
+<style>
+  .profile { color: #494741; font-size: 17px; font-weight: 500; line-height: 2; }
+  .profile h1, .profile h2, .profile h3 { color: #292824; font-weight: 700; }
+  .page-heading { margin-bottom: 40px; }
+  .page-heading h1 { font-size: clamp(30px, 4vw, 42px); letter-spacing: .14em; margin: 0; }
+  .page-heading p { margin: 10px 0 0; font-size: 16px; letter-spacing: .12em; color: #635e58; }
+  .introduction { display: grid; grid-template-columns: 190px minmax(0, 1fr); align-items: center; gap: 40px; padding: 42px 36px; background: #f0ede7; border-radius: 40px 60px 36px 52px; }
+  .profile-cat { display: block; width: 190px; height: auto; border-radius: 0; }
+  .speech { position: relative; isolation: isolate; padding: 48px 44px 64px; }
+  .speech::before { content: ''; position: absolute; inset: 0; z-index: -1; background: #fff; border-radius: 40% 49% 35% 22% / 15% 28% 18% 14%; }
+  .speech::after { content: ''; position: absolute; left: -18px; top: 45%; z-index: -1; width: 48px; height: 42px; background: #fff; border-radius: 4px 0 0 36px; transform: rotate(23deg); }
+  .eyebrow { display: block; color: #68634f; font-size: 13px; font-weight: 700; letter-spacing: .16em; line-height: 1.6; }
+  .speech .eyebrow { margin: 0 0 12px; }
+  .speech h2 { font-size: clamp(20px, 2.3vw, 25px); line-height: 1.6; margin-bottom: 18px; }
+  .speech p { font-size: 18px; margin: 0 0 18px; }
+  .speech p:not(.eyebrow) { font-size: 17px; font-weight: 500; }
+  .speech p:last-child { margin-bottom: 0; }
+  .profile-section { margin-top: 72px; }
+  .section-heading { margin-bottom: 25px; }
+  .section-heading h2, .contact-panel h2 { font-size: clamp(21px, 2.6vw, 27px); line-height: 1.6; margin: 8px 0 0; letter-spacing: .04em; }
+  .profile-section > p { margin: 0 0 24px; }
+  .experience-list { margin: 28px 0 18px; }
+  .experience-list > div { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 24px; padding: 20px 0; border-top: 1px solid #e6e2d7; }
+  .experience-list > div:last-child { border-bottom: 1px solid #e6e2d7; }
+  dt { font-weight: 700; }
+  dd { margin: 0; }
+  .section-note { font-size: 16px; color: #635e58; }
+  .journey { list-style: none; padding: 0 0 0 28px; margin: 0 0 0 6px; border-left: 1px solid #d1cabd; }
+  .journey li { position: relative; padding: 0 0 30px 10px; }
+  .journey li:last-child { padding-bottom: 0; }
+  .journey li::before { content: ''; position: absolute; top: 10px; left: -34px; width: 11px; height: 11px; border: 2px solid #fffefa; background: #a59b85; border-radius: 50%; }
+  .profile h3 { font-size: 20px; line-height: 1.7; margin: 0 0 10px; }
+  .journey p { margin: 0; }
+  .approach-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  .approach-grid > div { background: #f0f2ed; padding: 26px 22px; border-radius: 12px; }
+  .approach-grid > div:nth-child(2) { background: #f4efeb; }
+  .approach-grid > div:nth-child(3) { background: #f0eff3; }
+  .item-number { display: block; color: #68634f; font-size: 12px; letter-spacing: .1em; margin-bottom: 14px; }
+  .approach-grid p { font-size: 17px; margin: 0; }
+  .text-link { display: inline-flex; align-items: center; gap: 24px; color: #494741; text-underline-offset: 6px; font-size: 16px; }
+  .text-link:hover { color: #8a6812; }
+  .contact-panel { margin-top: 72px; padding: 44px 28px; text-align: center; background: #efebe2; border-radius: 20px; }
+  .contact-panel p { margin: 20px 0 26px; }
+  .contact-link { display: inline-flex; align-items: center; justify-content: space-between; gap: 48px; padding: 14px 26px; background: #49483f; color: #fffefa; text-decoration: none; font-size: 17px; font-weight: 700; border-radius: 4px; }
+  .contact-link:hover { background: #68634f; color: #fffefa; }
+  @media (max-width: 800px) {
+    .introduction { grid-template-columns: 140px minmax(0, 1fr); gap: 24px; padding: 32px 24px; }
+    .profile-cat { width: 140px; }
+    .speech { padding: 40px 30px 56px; }
+    .approach-grid { grid-template-columns: 1fr; gap: 14px; }
+  }
+  @media (max-width: 600px) {
+    .profile { font-size: 16px; }
+    .speech p, .approach-grid p { font-size: 16px; }
+    .speech p:not(.eyebrow) { font-size: 16px; }
+    .page-heading { margin-bottom: 28px; }
+    .introduction { grid-template-columns: minmax(0, 1fr); justify-items: center; gap: 22px; padding: 24px 16px; border-radius: 28px 36px 24px 32px; }
+    .profile-cat { width: 124px; }
+    .speech { width: 100%; padding: 40px 24px 48px; }
+    .speech::before { border-radius: 30% 25% 26% 22% / 9% 13% 9% 12%; }
+    .speech::after { top: -13px; left: calc(50% - 20px); width: 35px; height: 32px; transform: rotate(45deg); border-radius: 5px 0 0 0; }
+    .profile-section { margin-top: 48px; }
+    .experience-list > div { grid-template-columns: minmax(0, 1fr); gap: 5px; padding: 18px 0; }
+    .contact-panel { margin-top: 48px; padding: 32px 22px; }
+    .desktop-break { display: none; }
+  }
+</style>

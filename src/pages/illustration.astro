@@ -1,0 +1,160 @@
+---
+import RenewalLayout from '../layouts/RenewalLayout.astro';
+import illustrations from '../data/illustrations.json';
+
+const collections = [
+  { id: 'gallery', label: 'GALLERY', description: '完成作品' },
+  { id: 'practice', label: 'PRACTICE / WIP', description: '練習・制作途中' },
+];
+const displayDate = (date: string) => date.split('-').map(Number).join('/');
+---
+
+<RenewalLayout title="ILLUSTRATION | HIKIKO SURVIVAL" description="ヒキコの完成イラストと、練習・制作途中の作品。">
+  <h1>ILLUSTRATION</h1>
+  <nav class="collections" aria-label="作品の分類">
+    {collections.map(({ id, label, description }) => (
+      <a href={`#${id}`} data-collection={id}>
+        {label}<span>{description}</span>
+      </a>
+    ))}
+  </nav>
+
+  {collections.map(({ id, label }) => (
+    <section id={id} data-collection-panel aria-label={label}>
+      <ul class="works">
+        {illustrations.filter((work) => work.category === id).map((work) => (
+          <li>
+            <figure>
+              <a class="preview" href={`/illustration/${work.id}.webp`} data-artwork
+                aria-label={`「${work.title}」を拡大する`}>
+                <img src={`/illustration/${work.id}-thumb.webp`} alt={work.title}
+                  width={work.width} height={work.height} loading="lazy" decoding="async" />
+              </a>
+              <figcaption>
+                <span>{work.title}</span>
+                <time datetime={work.date}>{displayDate(work.date)}</time>
+              </figcaption>
+            </figure>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+
+  <p class="rights">© HIKIKO SURVIVAL · 作品の無断転載はご遠慮ください。</p>
+
+  <dialog id="artwork-viewer" aria-labelledby="artwork-title">
+    <form method="dialog"><button autofocus>閉じる <span aria-hidden="true">×</span></button></form>
+    <figure>
+      <img class="full-image" />
+      <figcaption>
+        <span id="artwork-title"></span>
+        <time></time>
+      </figcaption>
+    </figure>
+  </dialog>
+</RenewalLayout>
+
+<script>
+  const links = [...document.querySelectorAll<HTMLAnchorElement>('[data-collection]')];
+  const panels = document.querySelectorAll<HTMLElement>('[data-collection-panel]');
+
+  function showCollection() {
+    const selected = links.find((link) => link.hash === location.hash) ?? links[0];
+    for (const link of links) {
+      if (link === selected) link.setAttribute('aria-current', 'true');
+      else link.removeAttribute('aria-current');
+    }
+    for (const panel of panels) panel.hidden = panel.id !== selected.dataset.collection;
+  }
+
+  showCollection();
+  window.addEventListener('hashchange', showCollection);
+  for (const link of links) {
+    link.addEventListener('click', (event) => {
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      if (location.hash !== link.hash) history.pushState(null, '', link.hash);
+      showCollection();
+    });
+  }
+
+  const viewer = document.querySelector<HTMLDialogElement>('#artwork-viewer')!;
+  const fullImage = viewer.querySelector<HTMLImageElement>('img')!;
+  const title = viewer.querySelector('#artwork-title')!;
+  const date = viewer.querySelector('time')!;
+  let opener: HTMLAnchorElement | undefined;
+
+  for (const link of document.querySelectorAll<HTMLAnchorElement>('[data-artwork]')) {
+    link.addEventListener('click', (event) => {
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      if (typeof viewer.showModal !== 'function') return;
+      event.preventDefault();
+      const thumbnail = link.querySelector('img')!;
+      const workDate = link.parentElement!.querySelector('time')!;
+      title.textContent = thumbnail.alt;
+      fullImage.alt = thumbnail.alt;
+      fullImage.src = link.href;
+      date.dateTime = workDate.dateTime;
+      date.textContent = workDate.textContent;
+      opener = link;
+      viewer.showModal();
+    });
+  }
+
+  viewer.addEventListener('click', (event) => {
+    if (event.target === viewer) viewer.close();
+  });
+  viewer.addEventListener('close', () => {
+    fullImage.removeAttribute('src');
+    opener?.focus();
+  });
+</script>
+
+<style>
+  h1 { margin: 0 0 24px; font-size: clamp(26px, 6vw, 42px); letter-spacing: .08em; }
+  .collections { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
+  .collections a {
+    display: block; padding: 9px 14px; border: 1px solid #ddd7cc; border-radius: 6px;
+    background: #faf1ec; color: #403a32; text-decoration: none; font-size: 12px; font-weight: 700;
+  }
+  .collections a span { display: block; font-size: 11px; font-weight: 500; margin-top: 2px; }
+  .collections a[aria-current] { background: #e4efe8; border-color: #7c9283; }
+  .collections a:hover { border-color: #8a7755; }
+  section + section { margin-top: 36px; }
+  section[hidden] + section { margin-top: 0; }
+  .works {
+    list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px 18px; padding: 0; margin: 0;
+  }
+  figure { margin: 0; }
+  .preview {
+    display: block; aspect-ratio: 4 / 5; background: #eeeae3; border-radius: 6px; overflow: hidden;
+  }
+  .preview img { display: block; width: 100%; height: 100%; object-fit: contain; border-radius: 0; }
+  .preview:hover { outline: 2px solid #a18b54; outline-offset: 2px; }
+  figcaption { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 12px; padding-top: 7px; }
+  figcaption span { font-size: 14px; font-weight: 700; }
+  time, .rights { font-size: 12px; color: #625b4f; }
+  .rights { margin: 32px 0 0; }
+  dialog {
+    width: fit-content; max-width: calc(100% - 24px); max-height: calc(100dvh - 24px);
+    padding: 12px; border: 1px solid #ddd7cc; border-radius: 8px; background: #fffefa; color: #292824;
+  }
+  dialog::backdrop { background: #262220d9; }
+  dialog form { display: flex; justify-content: flex-end; margin-bottom: 8px; }
+  dialog button {
+    padding: 8px 12px; min-height: 44px; border: 1px solid #d8c89d; border-radius: 5px;
+    background: #f9f0d7; color: inherit; font: inherit; font-size: 13px; cursor: pointer;
+  }
+  .full-image {
+    display: block; width: auto; height: auto; max-width: min(960px, calc(100vw - 50px));
+    max-height: calc(100dvh - 140px); object-fit: contain; border-radius: 0;
+  }
+  @media (max-width: 720px) {
+    .works { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 12px; }
+  }
+  @media (max-width: 360px) {
+    .works { grid-template-columns: minmax(0, 1fr); }
+  }
+</style>
